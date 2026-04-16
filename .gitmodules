@@ -10,3 +10,6 @@
 [submodule "packages/bbqr"]
 	path = packages/bbqr
 	url = git@github.com:SatoshiPortal/bbqr-dart.git
+[submodule "packages/ark-wallet"]
+	path = packages/ark-wallet
+	url = git@github.com:SatoshiPortal/ark-wallet-dart.git
