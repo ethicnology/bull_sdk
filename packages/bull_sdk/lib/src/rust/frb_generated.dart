@@ -10,6 +10,12 @@ import 'frb_generated.dart';
 import 'frb_generated.io.dart'
     if (dart.library.js_interop) 'frb_generated.web.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
+import 'third_party/bbqr/continuous_join.dart';
+import 'third_party/bbqr/encode.dart';
+import 'third_party/bbqr/file_type.dart';
+import 'third_party/bbqr/join.dart';
+import 'third_party/bbqr/qr.dart';
+import 'third_party/bbqr/split.dart';
 import 'third_party/boltz/api/btc_ln.dart';
 import 'third_party/boltz/api/chain_swap.dart';
 import 'third_party/boltz/api/error.dart';
@@ -19,6 +25,7 @@ import 'third_party/boltz/api/lnurl.dart';
 import 'third_party/boltz/api/swap_status.dart';
 import 'third_party/boltz/api/transactions.dart';
 import 'third_party/boltz/api/types.dart';
+import 'third_party/dart_bbqr/api.dart';
 import 'third_party/lwk/api/blockchain.dart';
 import 'third_party/lwk/api/descriptor.dart';
 import 'third_party/lwk/api/error.dart';
@@ -79,7 +86,7 @@ class BullSdk extends BaseEntrypoint<BullSdkApi, BullSdkApiImpl, BullSdkWire> {
   String get codegenVersion => '2.11.1';
 
   @override
-  int get rustContentHash => -1365618180;
+  int get rustContentHash => -1097820448;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -90,6 +97,16 @@ class BullSdk extends BaseEntrypoint<BullSdkApi, BullSdkApiImpl, BullSdkWire> {
 }
 
 abstract class BullSdkApi extends BaseApi {
+  Future<ContinuousJoiner> bbqrContinuousJoinContinuousJoinerDefault();
+
+  Future<ContinuousJoinResult>
+  bbqrContinuousJoinContinuousJoinerFrbOverrideAddPart({
+    required ContinuousJoiner that,
+    required String part_,
+  });
+
+  Future<ContinuousJoiner> bbqrContinuousJoinContinuousJoinerNew();
+
   BigInt lwkApiTransactionLiquidTransactionFee({
     required LiquidTransaction that,
   });
@@ -581,6 +598,14 @@ abstract class BullSdkApi extends BaseApi {
     required String mnemonic,
   });
 
+  Future<int> bbqrEncodeEncodingAsByte({required Encoding that});
+
+  Future<Encoding?> bbqrEncodeEncodingFromByte({required int byte});
+
+  Future<bool> bbqrEncodeEncodingIsKnownEncoding({required int byte});
+
+  Future<BigInt> bbqrEncodeEncodingSplitMod({required Encoding that});
+
   Future<Uint8List> lwkApiTransactionExtractTxBytes({required String pset});
 
   Future<ChainFeesAndLimits> boltzApiFeesFeesChain({required Fees that});
@@ -593,6 +618,12 @@ abstract class BullSdkApi extends BaseApi {
     required Fees that,
   });
 
+  Future<int> bbqrFileTypeFileTypeAsByte({required FileType that});
+
+  Future<FileType?> bbqrFileTypeFileTypeFromByte({required int byte});
+
+  Future<bool> bbqrFileTypeFileTypeIsKnownFiletype({required int byte});
+
   PlatformInt64 lwkApiTypesGetBalanceByAssetId({
     required List<Balance> balances,
     required String assetId,
@@ -604,6 +635,10 @@ abstract class BullSdkApi extends BaseApi {
 
   Future<SizeAndFees> lwkApiTransactionGetSizeAndAbsoluteFees({
     required String pset,
+  });
+
+  Future<Joined> bbqrJoinJoinedFrbOverrideTryFromParts({
+    required List<String> parts,
   });
 
   Future<KeyPair> boltzApiTypesKeyPairGenerate({
@@ -752,6 +787,14 @@ abstract class BullSdkApi extends BaseApi {
     required String hash160,
   });
 
+  Future<Split> bbqrSplitSplitFrbOverrideTryFromData({
+    required List<int> bytes,
+    required FileType fileType,
+    required SplitOptions options,
+  });
+
+  Future<SplitOptions> bbqrSplitSplitOptionsDefault();
+
   String boltzApiSwapStatusSwapStatusAsString({required SwapStatus that});
 
   SwapStatus boltzApiSwapStatusSwapStatusFromJsonString({
@@ -767,6 +810,26 @@ abstract class BullSdkApi extends BaseApi {
   SwapStreamStatus boltzApiSwapStatusSwapStreamStatusFromJson({
     required String json,
   });
+
+  Future<BigInt> bbqrQrVersionDataCapacity({required Version that});
+
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_ContinuousJoinResult;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_ContinuousJoinResult;
+
+  CrossPlatformFinalizerArg
+  get rust_arc_decrement_strong_count_ContinuousJoinResultPtr;
+
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_ContinuousJoiner;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_ContinuousJoiner;
+
+  CrossPlatformFinalizerArg
+  get rust_arc_decrement_strong_count_ContinuousJoinerPtr;
 
   RustArcIncrementStrongCountFnType
   get rust_arc_increment_strong_count_LiquidTransaction;
@@ -800,6 +863,94 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
     required super.generalizedFrbRustBinding,
     required super.portManager,
   });
+
+  @override
+  Future<ContinuousJoiner> bbqrContinuousJoinContinuousJoinerDefault() {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          return wire.wire__bbqr__continuous_join__ContinuousJoiner_default(
+            port_,
+          );
+        },
+        codec: DcoCodec(
+          decodeSuccessData:
+              dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner,
+          decodeErrorData: null,
+        ),
+        constMeta: kBbqrContinuousJoinContinuousJoinerDefaultConstMeta,
+        argValues: [],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kBbqrContinuousJoinContinuousJoinerDefaultConstMeta =>
+      const TaskConstMeta(debugName: "ContinuousJoiner_default", argNames: []);
+
+  @override
+  Future<ContinuousJoinResult>
+  bbqrContinuousJoinContinuousJoinerFrbOverrideAddPart({
+    required ContinuousJoiner that,
+    required String part_,
+  }) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          var arg0 =
+              cst_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+                that,
+              );
+          var arg1 = cst_encode_String(part_);
+          return wire
+              .wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_part(
+                port_,
+                arg0,
+                arg1,
+              );
+        },
+        codec: DcoCodec(
+          decodeSuccessData:
+              dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult,
+          decodeErrorData: dco_decode_String,
+        ),
+        constMeta:
+            kBbqrContinuousJoinContinuousJoinerFrbOverrideAddPartConstMeta,
+        argValues: [that, part_],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta
+  get kBbqrContinuousJoinContinuousJoinerFrbOverrideAddPartConstMeta =>
+      const TaskConstMeta(
+        debugName:
+            "ContinuousJoiner_frb_override_add_part(dart_style=add_part)",
+        argNames: ["that", "part_"],
+      );
+
+  @override
+  Future<ContinuousJoiner> bbqrContinuousJoinContinuousJoinerNew() {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          return wire.wire__bbqr__continuous_join__ContinuousJoiner_new(port_);
+        },
+        codec: DcoCodec(
+          decodeSuccessData:
+              dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner,
+          decodeErrorData: null,
+        ),
+        constMeta: kBbqrContinuousJoinContinuousJoinerNewConstMeta,
+        argValues: [],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kBbqrContinuousJoinContinuousJoinerNewConstMeta =>
+      const TaskConstMeta(debugName: "ContinuousJoiner_new", argNames: []);
 
   @override
   BigInt lwkApiTransactionLiquidTransactionFee({
@@ -4295,6 +4446,100 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
       );
 
   @override
+  Future<int> bbqrEncodeEncodingAsByte({required Encoding that}) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          var arg0 = cst_encode_encoding(that);
+          return wire.wire__bbqr__encode__encoding_as_byte(port_, arg0);
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_u_8,
+          decodeErrorData: null,
+        ),
+        constMeta: kBbqrEncodeEncodingAsByteConstMeta,
+        argValues: [that],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kBbqrEncodeEncodingAsByteConstMeta =>
+      const TaskConstMeta(debugName: "encoding_as_byte", argNames: ["that"]);
+
+  @override
+  Future<Encoding?> bbqrEncodeEncodingFromByte({required int byte}) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          var arg0 = cst_encode_u_8(byte);
+          return wire.wire__bbqr__encode__encoding_from_byte(port_, arg0);
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_opt_box_autoadd_encoding,
+          decodeErrorData: null,
+        ),
+        constMeta: kBbqrEncodeEncodingFromByteConstMeta,
+        argValues: [byte],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kBbqrEncodeEncodingFromByteConstMeta =>
+      const TaskConstMeta(debugName: "encoding_from_byte", argNames: ["byte"]);
+
+  @override
+  Future<bool> bbqrEncodeEncodingIsKnownEncoding({required int byte}) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          var arg0 = cst_encode_u_8(byte);
+          return wire.wire__bbqr__encode__encoding_is_known_encoding(
+            port_,
+            arg0,
+          );
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_bool,
+          decodeErrorData: null,
+        ),
+        constMeta: kBbqrEncodeEncodingIsKnownEncodingConstMeta,
+        argValues: [byte],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kBbqrEncodeEncodingIsKnownEncodingConstMeta =>
+      const TaskConstMeta(
+        debugName: "encoding_is_known_encoding",
+        argNames: ["byte"],
+      );
+
+  @override
+  Future<BigInt> bbqrEncodeEncodingSplitMod({required Encoding that}) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          var arg0 = cst_encode_encoding(that);
+          return wire.wire__bbqr__encode__encoding_split_mod(port_, arg0);
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_usize,
+          decodeErrorData: null,
+        ),
+        constMeta: kBbqrEncodeEncodingSplitModConstMeta,
+        argValues: [that],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kBbqrEncodeEncodingSplitModConstMeta =>
+      const TaskConstMeta(debugName: "encoding_split_mod", argNames: ["that"]);
+
+  @override
   Future<Uint8List> lwkApiTransactionExtractTxBytes({required String pset}) {
     return handler.executeNormal(
       NormalTask(
@@ -4410,6 +4655,78 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
       const TaskConstMeta(debugName: "fees_submarine", argNames: ["that"]);
 
   @override
+  Future<int> bbqrFileTypeFileTypeAsByte({required FileType that}) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          var arg0 = cst_encode_file_type(that);
+          return wire.wire__bbqr__file_type__file_type_as_byte(port_, arg0);
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_u_8,
+          decodeErrorData: null,
+        ),
+        constMeta: kBbqrFileTypeFileTypeAsByteConstMeta,
+        argValues: [that],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kBbqrFileTypeFileTypeAsByteConstMeta =>
+      const TaskConstMeta(debugName: "file_type_as_byte", argNames: ["that"]);
+
+  @override
+  Future<FileType?> bbqrFileTypeFileTypeFromByte({required int byte}) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          var arg0 = cst_encode_u_8(byte);
+          return wire.wire__bbqr__file_type__file_type_from_byte(port_, arg0);
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_opt_box_autoadd_file_type,
+          decodeErrorData: null,
+        ),
+        constMeta: kBbqrFileTypeFileTypeFromByteConstMeta,
+        argValues: [byte],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kBbqrFileTypeFileTypeFromByteConstMeta =>
+      const TaskConstMeta(debugName: "file_type_from_byte", argNames: ["byte"]);
+
+  @override
+  Future<bool> bbqrFileTypeFileTypeIsKnownFiletype({required int byte}) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          var arg0 = cst_encode_u_8(byte);
+          return wire.wire__bbqr__file_type__file_type_is_known_filetype(
+            port_,
+            arg0,
+          );
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_bool,
+          decodeErrorData: null,
+        ),
+        constMeta: kBbqrFileTypeFileTypeIsKnownFiletypeConstMeta,
+        argValues: [byte],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kBbqrFileTypeFileTypeIsKnownFiletypeConstMeta =>
+      const TaskConstMeta(
+        debugName: "file_type_is_known_filetype",
+        argNames: ["byte"],
+      );
+
+  @override
   PlatformInt64 lwkApiTypesGetBalanceByAssetId({
     required List<Balance> balances,
     required String assetId,
@@ -4517,6 +4834,37 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
       const TaskConstMeta(
         debugName: "get_size_and_absolute_fees",
         argNames: ["pset"],
+      );
+
+  @override
+  Future<Joined> bbqrJoinJoinedFrbOverrideTryFromParts({
+    required List<String> parts,
+  }) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          var arg0 = cst_encode_list_String(parts);
+          return wire.wire__bbqr__join__joined_frb_override_try_from_parts(
+            port_,
+            arg0,
+          );
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_joined,
+          decodeErrorData: dco_decode_String,
+        ),
+        constMeta: kBbqrJoinJoinedFrbOverrideTryFromPartsConstMeta,
+        argValues: [parts],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kBbqrJoinJoinedFrbOverrideTryFromPartsConstMeta =>
+      const TaskConstMeta(
+        debugName:
+            "joined_frb_override_try_from_parts(dart_style=try_from_parts)",
+        argNames: ["parts"],
       );
 
   @override
@@ -5498,6 +5846,63 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   );
 
   @override
+  Future<Split> bbqrSplitSplitFrbOverrideTryFromData({
+    required List<int> bytes,
+    required FileType fileType,
+    required SplitOptions options,
+  }) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          var arg0 = cst_encode_list_prim_u_8_loose(bytes);
+          var arg1 = cst_encode_file_type(fileType);
+          var arg2 = cst_encode_box_autoadd_split_options(options);
+          return wire.wire__bbqr__split__split_frb_override_try_from_data(
+            port_,
+            arg0,
+            arg1,
+            arg2,
+          );
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_split,
+          decodeErrorData: dco_decode_String,
+        ),
+        constMeta: kBbqrSplitSplitFrbOverrideTryFromDataConstMeta,
+        argValues: [bytes, fileType, options],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kBbqrSplitSplitFrbOverrideTryFromDataConstMeta =>
+      const TaskConstMeta(
+        debugName: "split_frb_override_try_from_data(dart_style=try_from_data)",
+        argNames: ["bytes", "fileType", "options"],
+      );
+
+  @override
+  Future<SplitOptions> bbqrSplitSplitOptionsDefault() {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          return wire.wire__bbqr__split__split_options_default(port_);
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_split_options,
+          decodeErrorData: null,
+        ),
+        constMeta: kBbqrSplitSplitOptionsDefaultConstMeta,
+        argValues: [],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kBbqrSplitSplitOptionsDefaultConstMeta =>
+      const TaskConstMeta(debugName: "split_options_default", argNames: []);
+
+  @override
   String boltzApiSwapStatusSwapStatusAsString({required SwapStatus that}) {
     return handler.executeSync(
       SyncTask(
@@ -5641,6 +6046,46 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
         argNames: ["json"],
       );
 
+  @override
+  Future<BigInt> bbqrQrVersionDataCapacity({required Version that}) {
+    return handler.executeNormal(
+      NormalTask(
+        callFfi: (port_) {
+          var arg0 = cst_encode_version(that);
+          return wire.wire__bbqr__qr__version_data_capacity(port_, arg0);
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_usize,
+          decodeErrorData: null,
+        ),
+        constMeta: kBbqrQrVersionDataCapacityConstMeta,
+        argValues: [that],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kBbqrQrVersionDataCapacityConstMeta => const TaskConstMeta(
+    debugName: "version_data_capacity",
+    argNames: ["that"],
+  );
+
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_ContinuousJoinResult => wire
+      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_ContinuousJoinResult => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult;
+
+  RustArcIncrementStrongCountFnType
+  get rust_arc_increment_strong_count_ContinuousJoiner => wire
+      .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner;
+
+  RustArcDecrementStrongCountFnType
+  get rust_arc_decrement_strong_count_ContinuousJoiner => wire
+      .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner;
+
   RustArcIncrementStrongCountFnType
   get rust_arc_increment_strong_count_LiquidTransaction => wire
       .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction;
@@ -5664,6 +6109,24 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   RustArcDecrementStrongCountFnType
   get rust_arc_decrement_strong_count_Wallet => wire
       .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWallet;
+
+  @protected
+  ContinuousJoinResult
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ContinuousJoinResultImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  ContinuousJoiner
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ContinuousJoinerImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
 
   @protected
   LiquidTransaction
@@ -5695,6 +6158,15 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  ContinuousJoiner
+  dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ContinuousJoinerImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   LiquidTransaction
   dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
     dynamic raw,
@@ -5721,6 +6193,24 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   ) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return WalletImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  ContinuousJoinResult
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ContinuousJoinResultImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  ContinuousJoiner
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return ContinuousJoinerImpl.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -5756,6 +6246,24 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   String dco_decode_String(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as String;
+  }
+
+  @protected
+  ContinuousJoinerExt dco_decode_TraitDef_ContinuousJoinerExt(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    throw UnimplementedError();
+  }
+
+  @protected
+  JoinedExt dco_decode_TraitDef_JoinedExt(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    throw UnimplementedError();
+  }
+
+  @protected
+  SplitExt dco_decode_TraitDef_SplitExt(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    throw UnimplementedError();
   }
 
   @protected
@@ -5860,9 +6368,21 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  Encoding dco_decode_box_autoadd_encoding(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_encoding(raw);
+  }
+
+  @protected
   Fees dco_decode_box_autoadd_fees(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dco_decode_fees(raw);
+  }
+
+  @protected
+  FileType dco_decode_box_autoadd_file_type(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_file_type(raw);
   }
 
   @protected
@@ -5911,6 +6431,12 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   Side dco_decode_box_autoadd_side(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dco_decode_side(raw);
+  }
+
+  @protected
+  SplitOptions dco_decode_box_autoadd_split_options(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_split_options(raw);
   }
 
   @protected
@@ -6106,6 +6632,12 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  Encoding dco_decode_encoding(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return Encoding.values[raw as int];
+  }
+
+  @protected
   double dco_decode_f_32(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as double;
@@ -6127,6 +6659,12 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  FileType dco_decode_file_type(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return FileType.values[raw as int];
+  }
+
+  @protected
   int dco_decode_i_32(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as int;
@@ -6136,6 +6674,19 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   PlatformInt64 dco_decode_i_64(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dcoDecodeI64(raw);
+  }
+
+  @protected
+  Joined dco_decode_joined(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 3)
+      throw Exception('unexpected arr length: expect 3 but see ${arr.length}');
+    return Joined(
+      encoding: dco_decode_encoding(arr[0]),
+      fileType: dco_decode_file_type(arr[1]),
+      data: dco_decode_list_prim_u_8_strict(arr[2]),
+    );
   }
 
   @protected
@@ -6314,6 +6865,18 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   ElectrumSettings? dco_decode_opt_box_autoadd_electrum_settings(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw == null ? null : dco_decode_box_autoadd_electrum_settings(raw);
+  }
+
+  @protected
+  Encoding? dco_decode_opt_box_autoadd_encoding(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw == null ? null : dco_decode_box_autoadd_encoding(raw);
+  }
+
+  @protected
+  FileType? dco_decode_opt_box_autoadd_file_type(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw == null ? null : dco_decode_box_autoadd_file_type(raw);
   }
 
   @protected
@@ -6503,6 +7066,34 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
       discountedVsize: dco_decode_usize(arr[0]),
       discountedWeight: dco_decode_usize(arr[1]),
       absoluteFees: dco_decode_list_balance(arr[2]),
+    );
+  }
+
+  @protected
+  Split dco_decode_split(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 3)
+      throw Exception('unexpected arr length: expect 3 but see ${arr.length}');
+    return Split(
+      version: dco_decode_version(arr[0]),
+      parts: dco_decode_list_String(arr[1]),
+      encoding: dco_decode_encoding(arr[2]),
+    );
+  }
+
+  @protected
+  SplitOptions dco_decode_split_options(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 5)
+      throw Exception('unexpected arr length: expect 5 but see ${arr.length}');
+    return SplitOptions(
+      encoding: dco_decode_encoding(arr[0]),
+      minSplitNumber: dco_decode_usize(arr[1]),
+      maxSplitNumber: dco_decode_usize(arr[2]),
+      minVersion: dco_decode_version(arr[3]),
+      maxVersion: dco_decode_version(arr[4]),
     );
   }
 
@@ -6727,6 +7318,36 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  Version dco_decode_version(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return Version.values[raw as int];
+  }
+
+  @protected
+  ContinuousJoinResult
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ContinuousJoinResultImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  ContinuousJoiner
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ContinuousJoinerImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
   LiquidTransaction
   sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
     SseDeserializer deserializer,
@@ -6763,6 +7384,18 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  ContinuousJoiner
+  sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ContinuousJoinerImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
   LiquidTransaction
   sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
     SseDeserializer deserializer,
@@ -6793,6 +7426,30 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   ) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return WalletImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  ContinuousJoinResult
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ContinuousJoinResultImpl.frbInternalSseDecode(
+      sse_decode_usize(deserializer),
+      sse_decode_i_32(deserializer),
+    );
+  }
+
+  @protected
+  ContinuousJoiner
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return ContinuousJoinerImpl.frbInternalSseDecode(
       sse_decode_usize(deserializer),
       sse_decode_i_32(deserializer),
     );
@@ -6939,9 +7596,21 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  Encoding sse_decode_box_autoadd_encoding(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_encoding(deserializer));
+  }
+
+  @protected
   Fees sse_decode_box_autoadd_fees(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return (sse_decode_fees(deserializer));
+  }
+
+  @protected
+  FileType sse_decode_box_autoadd_file_type(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_file_type(deserializer));
   }
 
   @protected
@@ -6992,6 +7661,14 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   Side sse_decode_box_autoadd_side(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return (sse_decode_side(deserializer));
+  }
+
+  @protected
+  SplitOptions sse_decode_box_autoadd_split_options(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_split_options(deserializer));
   }
 
   @protected
@@ -7231,6 +7908,13 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  Encoding sse_decode_encoding(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var inner = sse_decode_i_32(deserializer);
+    return Encoding.values[inner];
+  }
+
+  @protected
   double sse_decode_f_32(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getFloat32();
@@ -7250,6 +7934,13 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  FileType sse_decode_file_type(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var inner = sse_decode_i_32(deserializer);
+    return FileType.values[inner];
+  }
+
+  @protected
   int sse_decode_i_32(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getInt32();
@@ -7259,6 +7950,19 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   PlatformInt64 sse_decode_i_64(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getPlatformInt64();
+  }
+
+  @protected
+  Joined sse_decode_joined(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_encoding = sse_decode_encoding(deserializer);
+    var var_fileType = sse_decode_file_type(deserializer);
+    var var_data = sse_decode_list_prim_u_8_strict(deserializer);
+    return Joined(
+      encoding: var_encoding,
+      fileType: var_fileType,
+      data: var_data,
+    );
   }
 
   @protected
@@ -7520,6 +8224,28 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  Encoding? sse_decode_opt_box_autoadd_encoding(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    if (sse_decode_bool(deserializer)) {
+      return (sse_decode_box_autoadd_encoding(deserializer));
+    } else {
+      return null;
+    }
+  }
+
+  @protected
+  FileType? sse_decode_opt_box_autoadd_file_type(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    if (sse_decode_bool(deserializer)) {
+      return (sse_decode_box_autoadd_file_type(deserializer));
+    } else {
+      return null;
+    }
+  }
+
+  @protected
   PsetInput? sse_decode_opt_box_autoadd_pset_input(
     SseDeserializer deserializer,
   ) {
@@ -7747,6 +8473,36 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
       discountedVsize: var_discountedVsize,
       discountedWeight: var_discountedWeight,
       absoluteFees: var_absoluteFees,
+    );
+  }
+
+  @protected
+  Split sse_decode_split(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_version = sse_decode_version(deserializer);
+    var var_parts = sse_decode_list_String(deserializer);
+    var var_encoding = sse_decode_encoding(deserializer);
+    return Split(
+      version: var_version,
+      parts: var_parts,
+      encoding: var_encoding,
+    );
+  }
+
+  @protected
+  SplitOptions sse_decode_split_options(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_encoding = sse_decode_encoding(deserializer);
+    var var_minSplitNumber = sse_decode_usize(deserializer);
+    var var_maxSplitNumber = sse_decode_usize(deserializer);
+    var var_minVersion = sse_decode_version(deserializer);
+    var var_maxVersion = sse_decode_version(deserializer);
+    return SplitOptions(
+      encoding: var_encoding,
+      minSplitNumber: var_minSplitNumber,
+      maxSplitNumber: var_maxSplitNumber,
+      minVersion: var_minVersion,
+      maxVersion: var_maxVersion,
     );
   }
 
@@ -7987,6 +8743,33 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  Version sse_decode_version(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var inner = sse_decode_i_32(deserializer);
+    return Version.values[inner];
+  }
+
+  @protected
+  int
+  cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    ContinuousJoinResult raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    // ignore: invalid_use_of_internal_member
+    return (raw as ContinuousJoinResultImpl).frbInternalCstEncode(move: true);
+  }
+
+  @protected
+  int
+  cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    // ignore: invalid_use_of_internal_member
+    return (raw as ContinuousJoinerImpl).frbInternalCstEncode(move: true);
+  }
+
+  @protected
   int
   cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
     LiquidTransaction raw,
@@ -8020,6 +8803,16 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
 
   @protected
   int
+  cst_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    // ignore: invalid_use_of_internal_member
+    return (raw as ContinuousJoinerImpl).frbInternalCstEncode(move: false);
+  }
+
+  @protected
+  int
   cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
     LiquidTransaction raw,
   ) {
@@ -8048,6 +8841,26 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
     // Codec=Cst (C-struct based), see doc to use other codecs
     // ignore: invalid_use_of_internal_member
     return (raw as WalletImpl).frbInternalCstEncode(move: false);
+  }
+
+  @protected
+  int
+  cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    ContinuousJoinResult raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    // ignore: invalid_use_of_internal_member
+    return (raw as ContinuousJoinResultImpl).frbInternalCstEncode();
+  }
+
+  @protected
+  int
+  cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    // ignore: invalid_use_of_internal_member
+    return (raw as ContinuousJoinerImpl).frbInternalCstEncode();
   }
 
   @protected
@@ -8100,6 +8913,12 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  int cst_encode_encoding(Encoding raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return cst_encode_i_32(raw.index);
+  }
+
+  @protected
   double cst_encode_f_32(double raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return raw;
@@ -8109,6 +8928,12 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   double cst_encode_f_64(double raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return raw;
+  }
+
+  @protected
+  int cst_encode_file_type(FileType raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return cst_encode_i_32(raw.index);
   }
 
   @protected
@@ -8166,6 +8991,38 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  int cst_encode_version(Version raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return cst_encode_i_32(raw.index);
+  }
+
+  @protected
+  void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    ContinuousJoinResult self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as ContinuousJoinResultImpl).frbInternalSseEncode(move: true),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as ContinuousJoinerImpl).frbInternalSseEncode(move: true),
+      serializer,
+    );
+  }
+
+  @protected
   void
   sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
     LiquidTransaction self,
@@ -8208,6 +9065,19 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
 
   @protected
   void
+  sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as ContinuousJoinerImpl).frbInternalSseEncode(move: false),
+      serializer,
+    );
+  }
+
+  @protected
+  void
   sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
     LiquidTransaction self,
     SseSerializer serializer,
@@ -8243,6 +9113,32 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(
       (self as WalletImpl).frbInternalSseEncode(move: false),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    ContinuousJoinResult self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as ContinuousJoinResultImpl).frbInternalSseEncode(move: null),
+      serializer,
+    );
+  }
+
+  @protected
+  void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+      (self as ContinuousJoinerImpl).frbInternalSseEncode(move: null),
       serializer,
     );
   }
@@ -8401,9 +9297,27 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  void sse_encode_box_autoadd_encoding(
+    Encoding self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_encoding(self, serializer);
+  }
+
+  @protected
   void sse_encode_box_autoadd_fees(Fees self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_fees(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_file_type(
+    FileType self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_file_type(self, serializer);
   }
 
   @protected
@@ -8467,6 +9381,15 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   void sse_encode_box_autoadd_side(Side self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_side(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_split_options(
+    SplitOptions self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_split_options(self, serializer);
   }
 
   @protected
@@ -8648,6 +9571,12 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  void sse_encode_encoding(Encoding self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.index, serializer);
+  }
+
+  @protected
   void sse_encode_f_32(double self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putFloat32(self);
@@ -8666,6 +9595,12 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  void sse_encode_file_type(FileType self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.index, serializer);
+  }
+
+  @protected
   void sse_encode_i_32(int self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putInt32(self);
@@ -8675,6 +9610,14 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putPlatformInt64(self);
+  }
+
+  @protected
+  void sse_encode_joined(Joined self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_encoding(self.encoding, serializer);
+    sse_encode_file_type(self.fileType, serializer);
+    sse_encode_list_prim_u_8_strict(self.data, serializer);
   }
 
   @protected
@@ -8896,6 +9839,32 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  void sse_encode_opt_box_autoadd_encoding(
+    Encoding? self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    sse_encode_bool(self != null, serializer);
+    if (self != null) {
+      sse_encode_box_autoadd_encoding(self, serializer);
+    }
+  }
+
+  @protected
+  void sse_encode_opt_box_autoadd_file_type(
+    FileType? self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    sse_encode_bool(self != null, serializer);
+    if (self != null) {
+      sse_encode_box_autoadd_file_type(self, serializer);
+    }
+  }
+
+  @protected
   void sse_encode_opt_box_autoadd_pset_input(
     PsetInput? self,
     SseSerializer serializer,
@@ -9093,6 +10062,24 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   }
 
   @protected
+  void sse_encode_split(Split self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_version(self.version, serializer);
+    sse_encode_list_String(self.parts, serializer);
+    sse_encode_encoding(self.encoding, serializer);
+  }
+
+  @protected
+  void sse_encode_split_options(SplitOptions self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_encoding(self.encoding, serializer);
+    sse_encode_usize(self.minSplitNumber, serializer);
+    sse_encode_usize(self.maxSplitNumber, serializer);
+    sse_encode_version(self.minVersion, serializer);
+    sse_encode_version(self.maxVersion, serializer);
+  }
+
+  @protected
   void sse_encode_sub_swap_fees(SubSwapFees self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_f_64(self.percentage, serializer);
@@ -9264,6 +10251,71 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putBigUint64(self);
   }
+
+  @protected
+  void sse_encode_version(Version self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.index, serializer);
+  }
+}
+
+@sealed
+class ContinuousJoinResultImpl extends RustOpaque
+    implements ContinuousJoinResult {
+  // Not to be used by end users
+  ContinuousJoinResultImpl.frbInternalDcoDecode(List<dynamic> wire)
+    : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  ContinuousJoinResultImpl.frbInternalSseDecode(
+    BigInt ptr,
+    int externalSizeOnNative,
+  ) : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount: BullSdk
+        .instance
+        .api
+        .rust_arc_increment_strong_count_ContinuousJoinResult,
+    rustArcDecrementStrongCount: BullSdk
+        .instance
+        .api
+        .rust_arc_decrement_strong_count_ContinuousJoinResult,
+    rustArcDecrementStrongCountPtr: BullSdk
+        .instance
+        .api
+        .rust_arc_decrement_strong_count_ContinuousJoinResultPtr,
+  );
+}
+
+@sealed
+class ContinuousJoinerImpl extends RustOpaque implements ContinuousJoiner {
+  // Not to be used by end users
+  ContinuousJoinerImpl.frbInternalDcoDecode(List<dynamic> wire)
+    : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  ContinuousJoinerImpl.frbInternalSseDecode(
+    BigInt ptr,
+    int externalSizeOnNative,
+  ) : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        BullSdk.instance.api.rust_arc_increment_strong_count_ContinuousJoiner,
+    rustArcDecrementStrongCount:
+        BullSdk.instance.api.rust_arc_decrement_strong_count_ContinuousJoiner,
+    rustArcDecrementStrongCountPtr: BullSdk
+        .instance
+        .api
+        .rust_arc_decrement_strong_count_ContinuousJoinerPtr,
+  );
+
+  Future<ContinuousJoinResult> addPart({required String part_}) =>
+      BullSdk.instance.api.bbqrContinuousJoinContinuousJoinerFrbOverrideAddPart(
+        that: this,
+        part_: part_,
+      );
 }
 
 @sealed

@@ -9,6 +9,12 @@ import 'dart:convert';
 import 'dart:ffi' as ffi;
 import 'frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated_io.dart';
+import 'third_party/bbqr/continuous_join.dart';
+import 'third_party/bbqr/encode.dart';
+import 'third_party/bbqr/file_type.dart';
+import 'third_party/bbqr/join.dart';
+import 'third_party/bbqr/qr.dart';
+import 'third_party/bbqr/split.dart';
 import 'third_party/boltz/api/btc_ln.dart';
 import 'third_party/boltz/api/chain_swap.dart';
 import 'third_party/boltz/api/error.dart';
@@ -18,6 +24,7 @@ import 'third_party/boltz/api/lnurl.dart';
 import 'third_party/boltz/api/swap_status.dart';
 import 'third_party/boltz/api/transactions.dart';
 import 'third_party/boltz/api/types.dart';
+import 'third_party/dart_bbqr/api.dart';
 import 'third_party/lwk/api/blockchain.dart';
 import 'third_party/lwk/api/descriptor.dart';
 import 'third_party/lwk/api/error.dart';
@@ -34,6 +41,14 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   });
 
   CrossPlatformFinalizerArg
+  get rust_arc_decrement_strong_count_ContinuousJoinResultPtr => wire
+      ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResultPtr;
+
+  CrossPlatformFinalizerArg
+  get rust_arc_decrement_strong_count_ContinuousJoinerPtr => wire
+      ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinerPtr;
+
+  CrossPlatformFinalizerArg
   get rust_arc_decrement_strong_count_LiquidTransactionPtr => wire
       ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransactionPtr;
 
@@ -44,6 +59,18 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   CrossPlatformFinalizerArg
   get rust_arc_decrement_strong_count_WalletPtr => wire
       ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWalletPtr;
+
+  @protected
+  ContinuousJoinResult
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    dynamic raw,
+  );
+
+  @protected
+  ContinuousJoiner
+  dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    dynamic raw,
+  );
 
   @protected
   LiquidTransaction
@@ -64,6 +91,12 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   );
 
   @protected
+  ContinuousJoiner
+  dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    dynamic raw,
+  );
+
+  @protected
   LiquidTransaction
   dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
     dynamic raw,
@@ -78,6 +111,18 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   @protected
   Wallet
   dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWallet(
+    dynamic raw,
+  );
+
+  @protected
+  ContinuousJoinResult
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    dynamic raw,
+  );
+
+  @protected
+  ContinuousJoiner
+  dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
     dynamic raw,
   );
 
@@ -101,6 +146,15 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
 
   @protected
   String dco_decode_String(dynamic raw);
+
+  @protected
+  ContinuousJoinerExt dco_decode_TraitDef_ContinuousJoinerExt(dynamic raw);
+
+  @protected
+  JoinedExt dco_decode_TraitDef_JoinedExt(dynamic raw);
+
+  @protected
+  SplitExt dco_decode_TraitDef_SplitExt(dynamic raw);
 
   @protected
   Address dco_decode_address(dynamic raw);
@@ -142,7 +196,13 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   ElectrumSettings dco_decode_box_autoadd_electrum_settings(dynamic raw);
 
   @protected
+  Encoding dco_decode_box_autoadd_encoding(dynamic raw);
+
+  @protected
   Fees dco_decode_box_autoadd_fees(dynamic raw);
+
+  @protected
+  FileType dco_decode_box_autoadd_file_type(dynamic raw);
 
   @protected
   KeyPair dco_decode_box_autoadd_key_pair(dynamic raw);
@@ -167,6 +227,9 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
 
   @protected
   Side dco_decode_box_autoadd_side(dynamic raw);
+
+  @protected
+  SplitOptions dco_decode_box_autoadd_split_options(dynamic raw);
 
   @protected
   Transaction dco_decode_box_autoadd_transaction(dynamic raw);
@@ -220,6 +283,9 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   ElectrumSettings dco_decode_electrum_settings(dynamic raw);
 
   @protected
+  Encoding dco_decode_encoding(dynamic raw);
+
+  @protected
   double dco_decode_f_32(dynamic raw);
 
   @protected
@@ -229,10 +295,16 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   Fees dco_decode_fees(dynamic raw);
 
   @protected
+  FileType dco_decode_file_type(dynamic raw);
+
+  @protected
   int dco_decode_i_32(dynamic raw);
 
   @protected
   PlatformInt64 dco_decode_i_64(dynamic raw);
+
+  @protected
+  Joined dco_decode_joined(dynamic raw);
 
   @protected
   KeyPair dco_decode_key_pair(dynamic raw);
@@ -300,6 +372,12 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   ElectrumSettings? dco_decode_opt_box_autoadd_electrum_settings(dynamic raw);
 
   @protected
+  Encoding? dco_decode_opt_box_autoadd_encoding(dynamic raw);
+
+  @protected
+  FileType? dco_decode_opt_box_autoadd_file_type(dynamic raw);
+
+  @protected
   PsetInput? dco_decode_opt_box_autoadd_pset_input(dynamic raw);
 
   @protected
@@ -358,6 +436,12 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
 
   @protected
   SizeAndFees dco_decode_size_and_fees(dynamic raw);
+
+  @protected
+  Split dco_decode_split(dynamic raw);
+
+  @protected
+  SplitOptions dco_decode_split_options(dynamic raw);
 
   @protected
   SubSwapFees dco_decode_sub_swap_fees(dynamic raw);
@@ -420,6 +504,21 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   BigInt dco_decode_usize(dynamic raw);
 
   @protected
+  Version dco_decode_version(dynamic raw);
+
+  @protected
+  ContinuousJoinResult
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  ContinuousJoiner
+  sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    SseDeserializer deserializer,
+  );
+
+  @protected
   LiquidTransaction
   sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
     SseDeserializer deserializer,
@@ -438,6 +537,12 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   );
 
   @protected
+  ContinuousJoiner
+  sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    SseDeserializer deserializer,
+  );
+
+  @protected
   LiquidTransaction
   sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
     SseDeserializer deserializer,
@@ -452,6 +557,18 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   @protected
   Wallet
   sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWallet(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  ContinuousJoinResult
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  ContinuousJoiner
+  sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
     SseDeserializer deserializer,
   );
 
@@ -522,7 +639,13 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   );
 
   @protected
+  Encoding sse_decode_box_autoadd_encoding(SseDeserializer deserializer);
+
+  @protected
   Fees sse_decode_box_autoadd_fees(SseDeserializer deserializer);
+
+  @protected
+  FileType sse_decode_box_autoadd_file_type(SseDeserializer deserializer);
 
   @protected
   KeyPair sse_decode_box_autoadd_key_pair(SseDeserializer deserializer);
@@ -549,6 +672,11 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
 
   @protected
   Side sse_decode_box_autoadd_side(SseDeserializer deserializer);
+
+  @protected
+  SplitOptions sse_decode_box_autoadd_split_options(
+    SseDeserializer deserializer,
+  );
 
   @protected
   Transaction sse_decode_box_autoadd_transaction(SseDeserializer deserializer);
@@ -606,6 +734,9 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   ElectrumSettings sse_decode_electrum_settings(SseDeserializer deserializer);
 
   @protected
+  Encoding sse_decode_encoding(SseDeserializer deserializer);
+
+  @protected
   double sse_decode_f_32(SseDeserializer deserializer);
 
   @protected
@@ -615,10 +746,16 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   Fees sse_decode_fees(SseDeserializer deserializer);
 
   @protected
+  FileType sse_decode_file_type(SseDeserializer deserializer);
+
+  @protected
   int sse_decode_i_32(SseDeserializer deserializer);
 
   @protected
   PlatformInt64 sse_decode_i_64(SseDeserializer deserializer);
+
+  @protected
+  Joined sse_decode_joined(SseDeserializer deserializer);
 
   @protected
   KeyPair sse_decode_key_pair(SseDeserializer deserializer);
@@ -692,6 +829,12 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   );
 
   @protected
+  Encoding? sse_decode_opt_box_autoadd_encoding(SseDeserializer deserializer);
+
+  @protected
+  FileType? sse_decode_opt_box_autoadd_file_type(SseDeserializer deserializer);
+
+  @protected
   PsetInput? sse_decode_opt_box_autoadd_pset_input(
     SseDeserializer deserializer,
   );
@@ -760,6 +903,12 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   SizeAndFees sse_decode_size_and_fees(SseDeserializer deserializer);
 
   @protected
+  Split sse_decode_split(SseDeserializer deserializer);
+
+  @protected
+  SplitOptions sse_decode_split_options(SseDeserializer deserializer);
+
+  @protected
   SubSwapFees sse_decode_sub_swap_fees(SseDeserializer deserializer);
 
   @protected
@@ -822,6 +971,9 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
 
   @protected
   BigInt sse_decode_usize(SseDeserializer deserializer);
+
+  @protected
+  Version sse_decode_version(SseDeserializer deserializer);
 
   @protected
   ffi.Pointer<wire_cst_list_prim_u_8_strict> cst_encode_String(String raw) {
@@ -908,11 +1060,23 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   }
 
   @protected
+  ffi.Pointer<ffi.Int32> cst_encode_box_autoadd_encoding(Encoding raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return wire.cst_new_box_autoadd_encoding(cst_encode_encoding(raw));
+  }
+
+  @protected
   ffi.Pointer<wire_cst_fees> cst_encode_box_autoadd_fees(Fees raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     final ptr = wire.cst_new_box_autoadd_fees();
     cst_api_fill_to_wire_fees(raw, ptr.ref);
     return ptr;
+  }
+
+  @protected
+  ffi.Pointer<ffi.Int32> cst_encode_box_autoadd_file_type(FileType raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return wire.cst_new_box_autoadd_file_type(cst_encode_file_type(raw));
   }
 
   @protected
@@ -984,6 +1148,16 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   ffi.Pointer<ffi.Int32> cst_encode_box_autoadd_side(Side raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return wire.cst_new_box_autoadd_side(cst_encode_side(raw));
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_split_options> cst_encode_box_autoadd_split_options(
+    SplitOptions raw,
+  ) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ptr = wire.cst_new_box_autoadd_split_options();
+    cst_api_fill_to_wire_split_options(raw, ptr.ref);
+    return ptr;
   }
 
   @protected
@@ -1193,6 +1367,18 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
     return raw == null
         ? ffi.nullptr
         : cst_encode_box_autoadd_electrum_settings(raw);
+  }
+
+  @protected
+  ffi.Pointer<ffi.Int32> cst_encode_opt_box_autoadd_encoding(Encoding? raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw == null ? ffi.nullptr : cst_encode_box_autoadd_encoding(raw);
+  }
+
+  @protected
+  ffi.Pointer<ffi.Int32> cst_encode_opt_box_autoadd_file_type(FileType? raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw == null ? ffi.nullptr : cst_encode_box_autoadd_file_type(raw);
   }
 
   @protected
@@ -1413,6 +1599,14 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   }
 
   @protected
+  void cst_api_fill_to_wire_box_autoadd_split_options(
+    SplitOptions apiObj,
+    ffi.Pointer<wire_cst_split_options> wireObj,
+  ) {
+    cst_api_fill_to_wire_split_options(apiObj, wireObj.ref);
+  }
+
+  @protected
   void cst_api_fill_to_wire_box_autoadd_transaction(
     Transaction apiObj,
     ffi.Pointer<wire_cst_transaction> wireObj,
@@ -1572,6 +1766,13 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   @protected
   void cst_api_fill_to_wire_fees(Fees apiObj, wire_cst_fees wireObj) {
     wireObj.boltz_url = cst_encode_String(apiObj.boltzUrl);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_joined(Joined apiObj, wire_cst_joined wireObj) {
+    wireObj.encoding = cst_encode_encoding(apiObj.encoding);
+    wireObj.file_type = cst_encode_file_type(apiObj.fileType);
+    wireObj.data = cst_encode_list_prim_u_8_strict(apiObj.data);
   }
 
   @protected
@@ -1751,6 +1952,25 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   }
 
   @protected
+  void cst_api_fill_to_wire_split(Split apiObj, wire_cst_split wireObj) {
+    wireObj.version = cst_encode_version(apiObj.version);
+    wireObj.parts = cst_encode_list_String(apiObj.parts);
+    wireObj.encoding = cst_encode_encoding(apiObj.encoding);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_split_options(
+    SplitOptions apiObj,
+    wire_cst_split_options wireObj,
+  ) {
+    wireObj.encoding = cst_encode_encoding(apiObj.encoding);
+    wireObj.min_split_number = cst_encode_usize(apiObj.minSplitNumber);
+    wireObj.max_split_number = cst_encode_usize(apiObj.maxSplitNumber);
+    wireObj.min_version = cst_encode_version(apiObj.minVersion);
+    wireObj.max_version = cst_encode_version(apiObj.maxVersion);
+  }
+
+  @protected
   void cst_api_fill_to_wire_sub_swap_fees(
     SubSwapFees apiObj,
     wire_cst_sub_swap_fees wireObj,
@@ -1892,6 +2112,18 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
 
   @protected
   int
+  cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    ContinuousJoinResult raw,
+  );
+
+  @protected
+  int
+  cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner raw,
+  );
+
+  @protected
+  int
   cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
     LiquidTransaction raw,
   );
@@ -1910,6 +2142,12 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
 
   @protected
   int
+  cst_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner raw,
+  );
+
+  @protected
+  int
   cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
     LiquidTransaction raw,
   );
@@ -1924,6 +2162,18 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   int
   cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWallet(
     Wallet raw,
+  );
+
+  @protected
+  int
+  cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    ContinuousJoinResult raw,
+  );
+
+  @protected
+  int
+  cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner raw,
   );
 
   @protected
@@ -1954,10 +2204,16 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   int cst_encode_chain_swap_direction(ChainSwapDirection raw);
 
   @protected
+  int cst_encode_encoding(Encoding raw);
+
+  @protected
   double cst_encode_f_32(double raw);
 
   @protected
   double cst_encode_f_64(double raw);
+
+  @protected
+  int cst_encode_file_type(FileType raw);
 
   @protected
   int cst_encode_i_32(int raw);
@@ -1987,6 +2243,23 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   void cst_encode_unit(void raw);
 
   @protected
+  int cst_encode_version(Version raw);
+
+  @protected
+  void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    ContinuousJoinResult self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner self,
+    SseSerializer serializer,
+  );
+
+  @protected
   void
   sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
     LiquidTransaction self,
@@ -2009,6 +2282,13 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
 
   @protected
   void
+  sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
   sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
     LiquidTransaction self,
     SseSerializer serializer,
@@ -2025,6 +2305,20 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   void
   sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWallet(
     Wallet self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    ContinuousJoinResult self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void
+  sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ContinuousJoiner self,
     SseSerializer serializer,
   );
 
@@ -2116,7 +2410,16 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   );
 
   @protected
+  void sse_encode_box_autoadd_encoding(Encoding self, SseSerializer serializer);
+
+  @protected
   void sse_encode_box_autoadd_fees(Fees self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_file_type(
+    FileType self,
+    SseSerializer serializer,
+  );
 
   @protected
   void sse_encode_box_autoadd_key_pair(KeyPair self, SseSerializer serializer);
@@ -2156,6 +2459,12 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
 
   @protected
   void sse_encode_box_autoadd_side(Side self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_split_options(
+    SplitOptions self,
+    SseSerializer serializer,
+  );
 
   @protected
   void sse_encode_box_autoadd_transaction(
@@ -2230,6 +2539,9 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   );
 
   @protected
+  void sse_encode_encoding(Encoding self, SseSerializer serializer);
+
+  @protected
   void sse_encode_f_32(double self, SseSerializer serializer);
 
   @protected
@@ -2239,10 +2551,16 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   void sse_encode_fees(Fees self, SseSerializer serializer);
 
   @protected
+  void sse_encode_file_type(FileType self, SseSerializer serializer);
+
+  @protected
   void sse_encode_i_32(int self, SseSerializer serializer);
 
   @protected
   void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_joined(Joined self, SseSerializer serializer);
 
   @protected
   void sse_encode_key_pair(KeyPair self, SseSerializer serializer);
@@ -2329,6 +2647,18 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   );
 
   @protected
+  void sse_encode_opt_box_autoadd_encoding(
+    Encoding? self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void sse_encode_opt_box_autoadd_file_type(
+    FileType? self,
+    SseSerializer serializer,
+  );
+
+  @protected
   void sse_encode_opt_box_autoadd_pset_input(
     PsetInput? self,
     SseSerializer serializer,
@@ -2410,6 +2740,12 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   void sse_encode_size_and_fees(SizeAndFees self, SseSerializer serializer);
 
   @protected
+  void sse_encode_split(Split self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_split_options(SplitOptions self, SseSerializer serializer);
+
+  @protected
   void sse_encode_sub_swap_fees(SubSwapFees self, SseSerializer serializer);
 
   @protected
@@ -2477,6 +2813,9 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
 
   @protected
   void sse_encode_usize(BigInt self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_version(Version self, SseSerializer serializer);
 }
 
 // Section: wire_class
@@ -2515,6 +2854,60 @@ class BullSdkWire implements BaseWire {
       );
   late final _store_dart_post_cobject = _store_dart_post_cobjectPtr
       .asFunction<void Function(DartPostCObjectFnType)>();
+
+  void wire__bbqr__continuous_join__ContinuousJoiner_default(int port_) {
+    return _wire__bbqr__continuous_join__ContinuousJoiner_default(port_);
+  }
+
+  late final _wire__bbqr__continuous_join__ContinuousJoiner_defaultPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+        'frbgen_bull_sdk_wire__bbqr__continuous_join__ContinuousJoiner_default',
+      );
+  late final _wire__bbqr__continuous_join__ContinuousJoiner_default =
+      _wire__bbqr__continuous_join__ContinuousJoiner_defaultPtr
+          .asFunction<void Function(int)>();
+
+  void wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_part(
+    int port_,
+    int that,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> part,
+  ) {
+    return _wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_part(
+      port_,
+      that,
+      part,
+    );
+  }
+
+  late final _wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_partPtr =
+      _lookup<
+        ffi.NativeFunction<
+          ffi.Void Function(
+            ffi.Int64,
+            ffi.UintPtr,
+            ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+          )
+        >
+      >(
+        'frbgen_bull_sdk_wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_part',
+      );
+  late final _wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_part =
+      _wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_partPtr
+          .asFunction<
+            void Function(int, int, ffi.Pointer<wire_cst_list_prim_u_8_strict>)
+          >();
+
+  void wire__bbqr__continuous_join__ContinuousJoiner_new(int port_) {
+    return _wire__bbqr__continuous_join__ContinuousJoiner_new(port_);
+  }
+
+  late final _wire__bbqr__continuous_join__ContinuousJoiner_newPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+        'frbgen_bull_sdk_wire__bbqr__continuous_join__ContinuousJoiner_new',
+      );
+  late final _wire__bbqr__continuous_join__ContinuousJoiner_new =
+      _wire__bbqr__continuous_join__ContinuousJoiner_newPtr
+          .asFunction<void Function(int)>();
 
   WireSyncRust2DartDco wire__lwk__api__transaction__LiquidTransaction_fee(
     int that,
@@ -5034,6 +5427,54 @@ class BullSdkWire implements BaseWire {
             void Function(int, int, ffi.Pointer<wire_cst_list_prim_u_8_strict>)
           >();
 
+  void wire__bbqr__encode__encoding_as_byte(int port_, int that) {
+    return _wire__bbqr__encode__encoding_as_byte(port_, that);
+  }
+
+  late final _wire__bbqr__encode__encoding_as_bytePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Int32)>>(
+        'frbgen_bull_sdk_wire__bbqr__encode__encoding_as_byte',
+      );
+  late final _wire__bbqr__encode__encoding_as_byte =
+      _wire__bbqr__encode__encoding_as_bytePtr
+          .asFunction<void Function(int, int)>();
+
+  void wire__bbqr__encode__encoding_from_byte(int port_, int byte) {
+    return _wire__bbqr__encode__encoding_from_byte(port_, byte);
+  }
+
+  late final _wire__bbqr__encode__encoding_from_bytePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Uint8)>>(
+        'frbgen_bull_sdk_wire__bbqr__encode__encoding_from_byte',
+      );
+  late final _wire__bbqr__encode__encoding_from_byte =
+      _wire__bbqr__encode__encoding_from_bytePtr
+          .asFunction<void Function(int, int)>();
+
+  void wire__bbqr__encode__encoding_is_known_encoding(int port_, int byte) {
+    return _wire__bbqr__encode__encoding_is_known_encoding(port_, byte);
+  }
+
+  late final _wire__bbqr__encode__encoding_is_known_encodingPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Uint8)>>(
+        'frbgen_bull_sdk_wire__bbqr__encode__encoding_is_known_encoding',
+      );
+  late final _wire__bbqr__encode__encoding_is_known_encoding =
+      _wire__bbqr__encode__encoding_is_known_encodingPtr
+          .asFunction<void Function(int, int)>();
+
+  void wire__bbqr__encode__encoding_split_mod(int port_, int that) {
+    return _wire__bbqr__encode__encoding_split_mod(port_, that);
+  }
+
+  late final _wire__bbqr__encode__encoding_split_modPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Int32)>>(
+        'frbgen_bull_sdk_wire__bbqr__encode__encoding_split_mod',
+      );
+  late final _wire__bbqr__encode__encoding_split_mod =
+      _wire__bbqr__encode__encoding_split_modPtr
+          .asFunction<void Function(int, int)>();
+
   void wire__lwk__api__transaction__extract_tx_bytes(
     int port_,
     ffi.Pointer<wire_cst_list_prim_u_8_strict> pset,
@@ -5129,6 +5570,42 @@ class BullSdkWire implements BaseWire {
       _wire__boltz__api__fees__fees_submarinePtr
           .asFunction<void Function(int, ffi.Pointer<wire_cst_fees>)>();
 
+  void wire__bbqr__file_type__file_type_as_byte(int port_, int that) {
+    return _wire__bbqr__file_type__file_type_as_byte(port_, that);
+  }
+
+  late final _wire__bbqr__file_type__file_type_as_bytePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Int32)>>(
+        'frbgen_bull_sdk_wire__bbqr__file_type__file_type_as_byte',
+      );
+  late final _wire__bbqr__file_type__file_type_as_byte =
+      _wire__bbqr__file_type__file_type_as_bytePtr
+          .asFunction<void Function(int, int)>();
+
+  void wire__bbqr__file_type__file_type_from_byte(int port_, int byte) {
+    return _wire__bbqr__file_type__file_type_from_byte(port_, byte);
+  }
+
+  late final _wire__bbqr__file_type__file_type_from_bytePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Uint8)>>(
+        'frbgen_bull_sdk_wire__bbqr__file_type__file_type_from_byte',
+      );
+  late final _wire__bbqr__file_type__file_type_from_byte =
+      _wire__bbqr__file_type__file_type_from_bytePtr
+          .asFunction<void Function(int, int)>();
+
+  void wire__bbqr__file_type__file_type_is_known_filetype(int port_, int byte) {
+    return _wire__bbqr__file_type__file_type_is_known_filetype(port_, byte);
+  }
+
+  late final _wire__bbqr__file_type__file_type_is_known_filetypePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Uint8)>>(
+        'frbgen_bull_sdk_wire__bbqr__file_type__file_type_is_known_filetype',
+      );
+  late final _wire__bbqr__file_type__file_type_is_known_filetype =
+      _wire__bbqr__file_type__file_type_is_known_filetypePtr
+          .asFunction<void Function(int, int)>();
+
   WireSyncRust2DartDco wire__lwk__api__types__get_balance_by_asset_id(
     ffi.Pointer<wire_cst_list_balance> balances,
     ffi.Pointer<wire_cst_list_prim_u_8_strict> asset_id,
@@ -5216,6 +5693,23 @@ class BullSdkWire implements BaseWire {
           .asFunction<
             void Function(int, ffi.Pointer<wire_cst_list_prim_u_8_strict>)
           >();
+
+  void wire__bbqr__join__joined_frb_override_try_from_parts(
+    int port_,
+    ffi.Pointer<wire_cst_list_String> parts,
+  ) {
+    return _wire__bbqr__join__joined_frb_override_try_from_parts(port_, parts);
+  }
+
+  late final _wire__bbqr__join__joined_frb_override_try_from_partsPtr =
+      _lookup<
+        ffi.NativeFunction<
+          ffi.Void Function(ffi.Int64, ffi.Pointer<wire_cst_list_String>)
+        >
+      >('frbgen_bull_sdk_wire__bbqr__join__joined_frb_override_try_from_parts');
+  late final _wire__bbqr__join__joined_frb_override_try_from_parts =
+      _wire__bbqr__join__joined_frb_override_try_from_partsPtr
+          .asFunction<void Function(int, ffi.Pointer<wire_cst_list_String>)>();
 
   void wire__boltz__api__types__key_pair_generate(
     int port_,
@@ -6039,6 +6533,54 @@ class BullSdkWire implements BaseWire {
             )
           >();
 
+  void wire__bbqr__split__split_frb_override_try_from_data(
+    int port_,
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> bytes,
+    int file_type,
+    ffi.Pointer<wire_cst_split_options> options,
+  ) {
+    return _wire__bbqr__split__split_frb_override_try_from_data(
+      port_,
+      bytes,
+      file_type,
+      options,
+    );
+  }
+
+  late final _wire__bbqr__split__split_frb_override_try_from_dataPtr =
+      _lookup<
+        ffi.NativeFunction<
+          ffi.Void Function(
+            ffi.Int64,
+            ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+            ffi.Int32,
+            ffi.Pointer<wire_cst_split_options>,
+          )
+        >
+      >('frbgen_bull_sdk_wire__bbqr__split__split_frb_override_try_from_data');
+  late final _wire__bbqr__split__split_frb_override_try_from_data =
+      _wire__bbqr__split__split_frb_override_try_from_dataPtr
+          .asFunction<
+            void Function(
+              int,
+              ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+              int,
+              ffi.Pointer<wire_cst_split_options>,
+            )
+          >();
+
+  void wire__bbqr__split__split_options_default(int port_) {
+    return _wire__bbqr__split__split_options_default(port_);
+  }
+
+  late final _wire__bbqr__split__split_options_defaultPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+        'frbgen_bull_sdk_wire__bbqr__split__split_options_default',
+      );
+  late final _wire__bbqr__split__split_options_default =
+      _wire__bbqr__split__split_options_defaultPtr
+          .asFunction<void Function(int)>();
+
   WireSyncRust2DartDco wire__boltz__api__swap_status__swap_status_as_string(
     int that,
   ) {
@@ -6140,6 +6682,86 @@ class BullSdkWire implements BaseWire {
               ffi.Pointer<wire_cst_list_prim_u_8_strict>,
             )
           >();
+
+  void wire__bbqr__qr__version_data_capacity(int port_, int that) {
+    return _wire__bbqr__qr__version_data_capacity(port_, that);
+  }
+
+  late final _wire__bbqr__qr__version_data_capacityPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Int32)>>(
+        'frbgen_bull_sdk_wire__bbqr__qr__version_data_capacity',
+      );
+  late final _wire__bbqr__qr__version_data_capacity =
+      _wire__bbqr__qr__version_data_capacityPtr
+          .asFunction<void Function(int, int)>();
+
+  void
+  rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResultPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+        'frbgen_bull_sdk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult',
+      );
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult =
+      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResultPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+  rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResultPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+        'frbgen_bull_sdk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult',
+      );
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult =
+      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResultPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+  rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinerPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+        'frbgen_bull_sdk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner',
+      );
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner =
+      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinerPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+  rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinerPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+        'frbgen_bull_sdk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner',
+      );
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner =
+      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinerPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
   void
   rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
@@ -6341,6 +6963,17 @@ class BullSdkWire implements BaseWire {
       _cst_new_box_autoadd_electrum_settingsPtr
           .asFunction<ffi.Pointer<wire_cst_electrum_settings> Function()>();
 
+  ffi.Pointer<ffi.Int32> cst_new_box_autoadd_encoding(int value) {
+    return _cst_new_box_autoadd_encoding(value);
+  }
+
+  late final _cst_new_box_autoadd_encodingPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int32> Function(ffi.Int32)>>(
+        'frbgen_bull_sdk_cst_new_box_autoadd_encoding',
+      );
+  late final _cst_new_box_autoadd_encoding = _cst_new_box_autoadd_encodingPtr
+      .asFunction<ffi.Pointer<ffi.Int32> Function(int)>();
+
   ffi.Pointer<wire_cst_fees> cst_new_box_autoadd_fees() {
     return _cst_new_box_autoadd_fees();
   }
@@ -6351,6 +6984,17 @@ class BullSdkWire implements BaseWire {
       );
   late final _cst_new_box_autoadd_fees = _cst_new_box_autoadd_feesPtr
       .asFunction<ffi.Pointer<wire_cst_fees> Function()>();
+
+  ffi.Pointer<ffi.Int32> cst_new_box_autoadd_file_type(int value) {
+    return _cst_new_box_autoadd_file_type(value);
+  }
+
+  late final _cst_new_box_autoadd_file_typePtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int32> Function(ffi.Int32)>>(
+        'frbgen_bull_sdk_cst_new_box_autoadd_file_type',
+      );
+  late final _cst_new_box_autoadd_file_type = _cst_new_box_autoadd_file_typePtr
+      .asFunction<ffi.Pointer<ffi.Int32> Function(int)>();
 
   ffi.Pointer<wire_cst_key_pair> cst_new_box_autoadd_key_pair() {
     return _cst_new_box_autoadd_key_pair();
@@ -6446,6 +7090,18 @@ class BullSdkWire implements BaseWire {
       );
   late final _cst_new_box_autoadd_side = _cst_new_box_autoadd_sidePtr
       .asFunction<ffi.Pointer<ffi.Int32> Function(int)>();
+
+  ffi.Pointer<wire_cst_split_options> cst_new_box_autoadd_split_options() {
+    return _cst_new_box_autoadd_split_options();
+  }
+
+  late final _cst_new_box_autoadd_split_optionsPtr =
+      _lookup<
+        ffi.NativeFunction<ffi.Pointer<wire_cst_split_options> Function()>
+      >('frbgen_bull_sdk_cst_new_box_autoadd_split_options');
+  late final _cst_new_box_autoadd_split_options =
+      _cst_new_box_autoadd_split_optionsPtr
+          .asFunction<ffi.Pointer<wire_cst_split_options> Function()>();
 
   ffi.Pointer<wire_cst_transaction> cst_new_box_autoadd_transaction() {
     return _cst_new_box_autoadd_transaction();
@@ -6693,14 +7349,14 @@ typedef DartDartPostCObjectFnTypeFunction =
 typedef DartPostCObjectFnType =
     ffi.Pointer<ffi.NativeFunction<DartPostCObjectFnTypeFunction>>;
 
-final class wire_cst_list_prim_u_8_loose extends ffi.Struct {
+final class wire_cst_list_prim_u_8_strict extends ffi.Struct {
   external ffi.Pointer<ffi.Uint8> ptr;
 
   @ffi.Int32()
   external int len;
 }
 
-final class wire_cst_list_prim_u_8_strict extends ffi.Struct {
+final class wire_cst_list_prim_u_8_loose extends ffi.Struct {
   external ffi.Pointer<ffi.Uint8> ptr;
 
   @ffi.Int32()
@@ -6898,6 +7554,13 @@ final class wire_cst_list_balance extends ffi.Struct {
   external int len;
 }
 
+final class wire_cst_list_String extends ffi.Struct {
+  external ffi.Pointer<ffi.Pointer<wire_cst_list_prim_u_8_strict>> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
 final class wire_cst_lbtc_ln_swap extends ffi.Struct {
   external ffi.Pointer<wire_cst_list_prim_u_8_strict> id;
 
@@ -6936,6 +7599,23 @@ final class wire_cst_lnurl extends ffi.Struct {
   external ffi.Pointer<wire_cst_list_prim_u_8_strict> value;
 }
 
+final class wire_cst_split_options extends ffi.Struct {
+  @ffi.Int32()
+  external int encoding;
+
+  @ffi.UintPtr()
+  external int min_split_number;
+
+  @ffi.UintPtr()
+  external int max_split_number;
+
+  @ffi.Int32()
+  external int min_version;
+
+  @ffi.Int32()
+  external int max_version;
+}
+
 final class wire_cst_pset_input extends ffi.Struct {
   external ffi.Pointer<wire_cst_list_prim_u_8_strict> witness_utxo_script;
 
@@ -6960,13 +7640,6 @@ final class wire_cst_transaction extends ffi.Struct {
   external ffi.Pointer<wire_cst_list_prim_u_8_strict> hex;
 
   external ffi.Pointer<ffi.Uint32> eta;
-}
-
-final class wire_cst_list_String extends ffi.Struct {
-  external ffi.Pointer<ffi.Pointer<wire_cst_list_prim_u_8_strict>> ptr;
-
-  @ffi.Int32()
-  external int len;
 }
 
 final class wire_cst_tx_input extends ffi.Struct {
@@ -7172,6 +7845,16 @@ final class wire_cst_decoded_invoice extends ffi.Struct {
   external ffi.Pointer<wire_cst_list_prim_u_8_strict> description;
 }
 
+final class wire_cst_joined extends ffi.Struct {
+  @ffi.Int32()
+  external int encoding;
+
+  @ffi.Int32()
+  external int file_type;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> data;
+}
+
 final class wire_cst_lwk_error extends ffi.Struct {
   external ffi.Pointer<wire_cst_list_prim_u_8_strict> msg;
 }
@@ -7237,6 +7920,16 @@ final class wire_cst_size_and_fees extends ffi.Struct {
   external int discounted_weight;
 
   external ffi.Pointer<wire_cst_list_balance> absolute_fees;
+}
+
+final class wire_cst_split extends ffi.Struct {
+  @ffi.Int32()
+  external int version;
+
+  external ffi.Pointer<wire_cst_list_String> parts;
+
+  @ffi.Int32()
+  external int encoding;
 }
 
 final class wire_cst_sub_swap_fees extends ffi.Struct {

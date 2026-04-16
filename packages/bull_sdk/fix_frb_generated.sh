@@ -49,4 +49,7 @@ with open('$FILE', 'w') as f:
     f.write('\n'.join(result))
 "
 
+# Step 3: Convert mirrored TxFee to boltz::TxFee via .into()
+sed -i '' 's/api_miner_fee,/api_miner_fee.into(),/g' "$FILE"
+
 echo "Post-processed $FILE"

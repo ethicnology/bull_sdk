@@ -25,6 +25,10 @@
 
 // Section: imports
 
+use bbqr::continuous_join::*;
+use dart_bbqr::api::ContinuousJoinerExt;
+use dart_bbqr::api::JoinedExt;
+use dart_bbqr::api::SplitExt;
 use flutter_rust_bridge::for_generated::byteorder::{NativeEndian, ReadBytesExt, WriteBytesExt};
 use flutter_rust_bridge::for_generated::{transform_result_dco, Lifetimeable, Lockable};
 use flutter_rust_bridge::{Handler, IntoIntoDart};
@@ -39,7 +43,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueNom,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.11.1";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -1365618180;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -1097820448;
 
 // Section: executor
 
@@ -47,6 +51,88 @@ flutter_rust_bridge::frb_generated_default_handler!();
 
 // Section: wire_funcs
 
+fn wire__bbqr__continuous_join__ContinuousJoiner_default_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "ContinuousJoiner_default",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            move |context| {
+                transform_result_dco::<_, _, ()>((move || {
+                    let output_ok =
+                        Result::<_, ()>::Ok(bbqr::continuous_join::ContinuousJoiner::default())?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_part_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>,
+    >,
+    part: impl CstDecode<String>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "ContinuousJoiner_frb_override_add_part(dart_style=add_part)",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            let api_part = part.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, String>((move || {
+                    let mut api_that_guard = None;
+                    let decode_indices_ =
+                        flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                            flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                                &api_that, 0, true,
+                            ),
+                        ]);
+                    for i in decode_indices_ {
+                        match i {
+                            0 => api_that_guard = Some(api_that.lockable_decode_sync_ref_mut()),
+                            _ => unreachable!(),
+                        }
+                    }
+                    let mut api_that_guard = api_that_guard.unwrap();
+                    let output_ok = bbqr::continuous_join::ContinuousJoiner::frb_override_add_part(
+                        &mut *api_that_guard,
+                        api_part,
+                    )?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__bbqr__continuous_join__ContinuousJoiner_new_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "ContinuousJoiner_new",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            move |context| {
+                transform_result_dco::<_, _, ()>((move || {
+                    let output_ok =
+                        Result::<_, ()>::Ok(bbqr::continuous_join::ContinuousJoiner::new())?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
 fn wire__lwk__api__transaction__LiquidTransaction_fee_impl(
     that: impl CstDecode<
         RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LiquidTransaction>>,
@@ -3278,6 +3364,94 @@ fn wire__lwk__api__descriptor__descriptor_new_confidential_impl(
         },
     )
 }
+fn wire__bbqr__encode__encoding_as_byte_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    that: impl CstDecode<bbqr::encode::Encoding>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "encoding_as_byte",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, ()>((move || {
+                    let output_ok =
+                        Result::<_, ()>::Ok(bbqr::encode::Encoding::as_byte(&api_that))?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__bbqr__encode__encoding_from_byte_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    byte: impl CstDecode<u8>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "encoding_from_byte",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_byte = byte.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, ()>((move || {
+                    let output_ok =
+                        Result::<_, ()>::Ok(bbqr::encode::Encoding::from_byte(api_byte))?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__bbqr__encode__encoding_is_known_encoding_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    byte: impl CstDecode<u8>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "encoding_is_known_encoding",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_byte = byte.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, ()>((move || {
+                    let output_ok =
+                        Result::<_, ()>::Ok(bbqr::encode::Encoding::is_known_encoding(api_byte))?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__bbqr__encode__encoding_split_mod_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    that: impl CstDecode<bbqr::encode::Encoding>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "encoding_split_mod",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, ()>((move || {
+                    let output_ok =
+                        Result::<_, ()>::Ok(bbqr::encode::Encoding::split_mod(&api_that))?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
 fn wire__lwk__api__transaction__extract_tx_bytes_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     pset: impl CstDecode<String>,
@@ -3393,6 +3567,73 @@ fn wire__boltz__api__fees__fees_submarine_impl(
         },
     )
 }
+fn wire__bbqr__file_type__file_type_as_byte_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    that: impl CstDecode<bbqr::file_type::FileType>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "file_type_as_byte",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, ()>((move || {
+                    let output_ok =
+                        Result::<_, ()>::Ok(bbqr::file_type::FileType::as_byte(&api_that))?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__bbqr__file_type__file_type_from_byte_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    byte: impl CstDecode<u8>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "file_type_from_byte",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_byte = byte.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, ()>((move || {
+                    let output_ok =
+                        Result::<_, ()>::Ok(bbqr::file_type::FileType::from_byte(api_byte))?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__bbqr__file_type__file_type_is_known_filetype_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    byte: impl CstDecode<u8>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "file_type_is_known_filetype",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_byte = byte.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, ()>((move || {
+                    let output_ok = Result::<_, ()>::Ok(
+                        bbqr::file_type::FileType::is_known_filetype(api_byte),
+                    )?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
 fn wire__lwk__api__types__get_balance_by_asset_id_impl(
     balances: impl CstDecode<Vec<lwk::api::types::Balance>>,
     asset_id: impl CstDecode<String>,
@@ -3471,6 +3712,27 @@ fn wire__lwk__api__transaction__get_size_and_absolute_fees_impl(
                     let output_ok = lwk::api::transaction::get_size_and_absolute_fees(api_pset)?;
                     Ok(output_ok)
                 })().map_err(FrbWrapper))
+            }
+        },
+    )
+}
+fn wire__bbqr__join__joined_frb_override_try_from_parts_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    parts: impl CstDecode<Vec<String>>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "joined_frb_override_try_from_parts(dart_style=try_from_parts)",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_parts = parts.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, String>((move || {
+                    let output_ok = bbqr::join::Joined::frb_override_try_from_parts(api_parts)?;
+                    Ok(output_ok)
+                })())
             }
         },
     )
@@ -4243,6 +4505,54 @@ fn wire__boltz__api__types__pre_image_new_impl(
         },
     )
 }
+fn wire__bbqr__split__split_frb_override_try_from_data_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    bytes: impl CstDecode<Vec<u8>>,
+    file_type: impl CstDecode<bbqr::file_type::FileType>,
+    options: impl CstDecode<bbqr::split::SplitOptions>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "split_frb_override_try_from_data(dart_style=try_from_data)",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_bytes = bytes.cst_decode();
+            let api_file_type = file_type.cst_decode();
+            let api_options = options.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, String>((move || {
+                    let output_ok = bbqr::split::Split::frb_override_try_from_data(
+                        &api_bytes,
+                        api_file_type,
+                        api_options,
+                    )?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__bbqr__split__split_options_default_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "split_options_default",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            move |context| {
+                transform_result_dco::<_, _, ()>((move || {
+                    let output_ok = Result::<_, ()>::Ok(bbqr::split::SplitOptions::default())?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
 fn wire__boltz__api__swap_status__swap_status_as_string_impl(
     that: impl CstDecode<boltz::api::swap_status::SwapStatus>,
 ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
@@ -4333,6 +4643,28 @@ fn wire__boltz__api__swap_status__swap_stream_status_from_json_impl(
                 let output_ok = boltz::api::swap_status::swap_stream_status_from_json(api_json)?;
                 Ok(output_ok)
             })())
+        },
+    )
+}
+fn wire__bbqr__qr__version_data_capacity_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    that: impl CstDecode<bbqr::qr::Version>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "version_data_capacity",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, ()>((move || {
+                    let output_ok =
+                        Result::<_, ()>::Ok(bbqr::qr::Version::data_capacity(&api_that))?;
+                    Ok(output_ok)
+                })())
+            }
         },
     )
 }
@@ -4450,6 +4782,12 @@ const _: fn() = || {
         let _: String = Fees.boltz_url;
     }
     {
+        let Joined = None::<bbqr::join::Joined>.unwrap();
+        let _: bbqr::encode::Encoding = Joined.encoding;
+        let _: bbqr::file_type::FileType = Joined.file_type;
+        let _: Vec<u8> = Joined.data;
+    }
+    {
         let KeyPair = None::<boltz::api::types::KeyPair>.unwrap();
         let _: String = KeyPair.secret_key;
         let _: String = KeyPair.public_key;
@@ -4554,6 +4892,20 @@ const _: fn() = || {
         let _: usize = SizeAndFees.discounted_vsize;
         let _: usize = SizeAndFees.discounted_weight;
         let _: Vec<lwk::api::types::Balance> = SizeAndFees.absolute_fees;
+    }
+    {
+        let Split = None::<bbqr::split::Split>.unwrap();
+        let _: bbqr::qr::Version = Split.version;
+        let _: Vec<String> = Split.parts;
+        let _: bbqr::encode::Encoding = Split.encoding;
+    }
+    {
+        let SplitOptions = None::<bbqr::split::SplitOptions>.unwrap();
+        let _: bbqr::encode::Encoding = SplitOptions.encoding;
+        let _: usize = SplitOptions.min_split_number;
+        let _: usize = SplitOptions.max_split_number;
+        let _: bbqr::qr::Version = SplitOptions.min_version;
+        let _: bbqr::qr::Version = SplitOptions.max_version;
     }
     {
         let SubSwapFees = None::<boltz::api::fees::SubSwapFees>.unwrap();
@@ -4669,6 +5021,17 @@ impl CstDecode<boltz::api::types::ChainSwapDirection> for i32 {
         }
     }
 }
+impl CstDecode<bbqr::encode::Encoding> for i32 {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> bbqr::encode::Encoding {
+        match self {
+            0 => bbqr::encode::Encoding::Hex,
+            1 => bbqr::encode::Encoding::Base32,
+            2 => bbqr::encode::Encoding::Zlib,
+            _ => unreachable!("Invalid variant for Encoding: {}", self),
+        }
+    }
+}
 impl CstDecode<f32> for f32 {
     // Codec=Cst (C-struct based), see doc to use other codecs
     fn cst_decode(self) -> f32 {
@@ -4679,6 +5042,19 @@ impl CstDecode<f64> for f64 {
     // Codec=Cst (C-struct based), see doc to use other codecs
     fn cst_decode(self) -> f64 {
         self
+    }
+}
+impl CstDecode<bbqr::file_type::FileType> for i32 {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> bbqr::file_type::FileType {
+        match self {
+            0 => bbqr::file_type::FileType::Psbt,
+            1 => bbqr::file_type::FileType::Transaction,
+            2 => bbqr::file_type::FileType::Json,
+            3 => bbqr::file_type::FileType::Cbor,
+            4 => bbqr::file_type::FileType::UnicodeText,
+            _ => unreachable!("Invalid variant for FileType: {}", self),
+        }
     }
 }
 impl CstDecode<i32> for i32 {
@@ -4787,6 +5163,74 @@ impl CstDecode<usize> for usize {
         self
     }
 }
+impl CstDecode<bbqr::qr::Version> for i32 {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> bbqr::qr::Version {
+        match self {
+            0 => bbqr::qr::Version::V01,
+            1 => bbqr::qr::Version::V02,
+            2 => bbqr::qr::Version::V03,
+            3 => bbqr::qr::Version::V04,
+            4 => bbqr::qr::Version::V05,
+            5 => bbqr::qr::Version::V06,
+            6 => bbqr::qr::Version::V07,
+            7 => bbqr::qr::Version::V08,
+            8 => bbqr::qr::Version::V09,
+            9 => bbqr::qr::Version::V10,
+            10 => bbqr::qr::Version::V11,
+            11 => bbqr::qr::Version::V12,
+            12 => bbqr::qr::Version::V13,
+            13 => bbqr::qr::Version::V14,
+            14 => bbqr::qr::Version::V15,
+            15 => bbqr::qr::Version::V16,
+            16 => bbqr::qr::Version::V17,
+            17 => bbqr::qr::Version::V18,
+            18 => bbqr::qr::Version::V19,
+            19 => bbqr::qr::Version::V20,
+            20 => bbqr::qr::Version::V21,
+            21 => bbqr::qr::Version::V22,
+            22 => bbqr::qr::Version::V23,
+            23 => bbqr::qr::Version::V24,
+            24 => bbqr::qr::Version::V25,
+            25 => bbqr::qr::Version::V26,
+            26 => bbqr::qr::Version::V27,
+            27 => bbqr::qr::Version::V28,
+            28 => bbqr::qr::Version::V29,
+            29 => bbqr::qr::Version::V30,
+            30 => bbqr::qr::Version::V31,
+            31 => bbqr::qr::Version::V32,
+            32 => bbqr::qr::Version::V33,
+            33 => bbqr::qr::Version::V34,
+            34 => bbqr::qr::Version::V35,
+            35 => bbqr::qr::Version::V36,
+            36 => bbqr::qr::Version::V37,
+            37 => bbqr::qr::Version::V38,
+            38 => bbqr::qr::Version::V39,
+            39 => bbqr::qr::Version::V40,
+            _ => unreachable!("Invalid variant for Version: {}", self),
+        }
+    }
+}
+impl SseDecode for ContinuousJoinResult {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <RustOpaqueNom<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>,
+        >>::sse_decode(deserializer);
+        return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
+    }
+}
+
+impl SseDecode for ContinuousJoiner {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <RustOpaqueNom<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>,
+        >>::sse_decode(deserializer);
+        return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
+    }
+}
+
 impl SseDecode for LiquidTransaction {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -4816,6 +5260,26 @@ impl SseDecode for Wallet {
             flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Wallet>,
         >>::sse_decode(deserializer);
         return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
+    }
+}
+
+impl SseDecode
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>>
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <usize>::sse_decode(deserializer);
+        return unsafe { decode_rust_opaque_nom(inner) };
+    }
+}
+
+impl SseDecode
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <usize>::sse_decode(deserializer);
+        return unsafe { decode_rust_opaque_nom(inner) };
     }
 }
 
@@ -5122,6 +5586,19 @@ impl SseDecode for boltz::api::types::ElectrumSettings {
     }
 }
 
+impl SseDecode for bbqr::encode::Encoding {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => bbqr::encode::Encoding::Hex,
+            1 => bbqr::encode::Encoding::Base32,
+            2 => bbqr::encode::Encoding::Zlib,
+            _ => unreachable!("Invalid variant for Encoding: {}", inner),
+        };
+    }
+}
+
 impl SseDecode for f32 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -5146,6 +5623,21 @@ impl SseDecode for boltz::api::fees::Fees {
     }
 }
 
+impl SseDecode for bbqr::file_type::FileType {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => bbqr::file_type::FileType::Psbt,
+            1 => bbqr::file_type::FileType::Transaction,
+            2 => bbqr::file_type::FileType::Json,
+            3 => bbqr::file_type::FileType::Cbor,
+            4 => bbqr::file_type::FileType::UnicodeText,
+            _ => unreachable!("Invalid variant for FileType: {}", inner),
+        };
+    }
+}
+
 impl SseDecode for i32 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -5157,6 +5649,20 @@ impl SseDecode for i64 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         deserializer.cursor.read_i64::<NativeEndian>().unwrap()
+    }
+}
+
+impl SseDecode for bbqr::join::Joined {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_encoding = <bbqr::encode::Encoding>::sse_decode(deserializer);
+        let mut var_fileType = <bbqr::file_type::FileType>::sse_decode(deserializer);
+        let mut var_data = <Vec<u8>>::sse_decode(deserializer);
+        return bbqr::join::Joined {
+            encoding: var_encoding,
+            file_type: var_fileType,
+            data: var_data,
+        };
     }
 }
 
@@ -5431,6 +5937,28 @@ impl SseDecode for Option<boltz::api::types::ElectrumSettings> {
     }
 }
 
+impl SseDecode for Option<bbqr::encode::Encoding> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        if (<bool>::sse_decode(deserializer)) {
+            return Some(<bbqr::encode::Encoding>::sse_decode(deserializer));
+        } else {
+            return None;
+        }
+    }
+}
+
+impl SseDecode for Option<bbqr::file_type::FileType> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        if (<bool>::sse_decode(deserializer)) {
+            return Some(<bbqr::file_type::FileType>::sse_decode(deserializer));
+        } else {
+            return None;
+        }
+    }
+}
+
 impl SseDecode for Option<lwk::api::transaction::PsetInput> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -5683,6 +6211,38 @@ impl SseDecode for lwk::api::types::SizeAndFees {
             discounted_vsize: var_discountedVsize,
             discounted_weight: var_discountedWeight,
             absolute_fees: var_absoluteFees,
+        };
+    }
+}
+
+impl SseDecode for bbqr::split::Split {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_version = <bbqr::qr::Version>::sse_decode(deserializer);
+        let mut var_parts = <Vec<String>>::sse_decode(deserializer);
+        let mut var_encoding = <bbqr::encode::Encoding>::sse_decode(deserializer);
+        return bbqr::split::Split {
+            version: var_version,
+            parts: var_parts,
+            encoding: var_encoding,
+        };
+    }
+}
+
+impl SseDecode for bbqr::split::SplitOptions {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_encoding = <bbqr::encode::Encoding>::sse_decode(deserializer);
+        let mut var_minSplitNumber = <usize>::sse_decode(deserializer);
+        let mut var_maxSplitNumber = <usize>::sse_decode(deserializer);
+        let mut var_minVersion = <bbqr::qr::Version>::sse_decode(deserializer);
+        let mut var_maxVersion = <bbqr::qr::Version>::sse_decode(deserializer);
+        return bbqr::split::SplitOptions {
+            encoding: var_encoding,
+            min_split_number: var_minSplitNumber,
+            max_split_number: var_maxSplitNumber,
+            min_version: var_minVersion,
+            max_version: var_maxVersion,
         };
     }
 }
@@ -5984,6 +6544,56 @@ impl SseDecode for usize {
     }
 }
 
+impl SseDecode for bbqr::qr::Version {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => bbqr::qr::Version::V01,
+            1 => bbqr::qr::Version::V02,
+            2 => bbqr::qr::Version::V03,
+            3 => bbqr::qr::Version::V04,
+            4 => bbqr::qr::Version::V05,
+            5 => bbqr::qr::Version::V06,
+            6 => bbqr::qr::Version::V07,
+            7 => bbqr::qr::Version::V08,
+            8 => bbqr::qr::Version::V09,
+            9 => bbqr::qr::Version::V10,
+            10 => bbqr::qr::Version::V11,
+            11 => bbqr::qr::Version::V12,
+            12 => bbqr::qr::Version::V13,
+            13 => bbqr::qr::Version::V14,
+            14 => bbqr::qr::Version::V15,
+            15 => bbqr::qr::Version::V16,
+            16 => bbqr::qr::Version::V17,
+            17 => bbqr::qr::Version::V18,
+            18 => bbqr::qr::Version::V19,
+            19 => bbqr::qr::Version::V20,
+            20 => bbqr::qr::Version::V21,
+            21 => bbqr::qr::Version::V22,
+            22 => bbqr::qr::Version::V23,
+            23 => bbqr::qr::Version::V24,
+            24 => bbqr::qr::Version::V25,
+            25 => bbqr::qr::Version::V26,
+            26 => bbqr::qr::Version::V27,
+            27 => bbqr::qr::Version::V28,
+            28 => bbqr::qr::Version::V29,
+            29 => bbqr::qr::Version::V30,
+            30 => bbqr::qr::Version::V31,
+            31 => bbqr::qr::Version::V32,
+            32 => bbqr::qr::Version::V33,
+            33 => bbqr::qr::Version::V34,
+            34 => bbqr::qr::Version::V35,
+            35 => bbqr::qr::Version::V36,
+            36 => bbqr::qr::Version::V37,
+            37 => bbqr::qr::Version::V38,
+            38 => bbqr::qr::Version::V39,
+            39 => bbqr::qr::Version::V40,
+            _ => unreachable!("Invalid variant for Version: {}", inner),
+        };
+    }
+}
+
 fn pde_ffi_dispatcher_primary_impl(
     func_id: i32,
     port: flutter_rust_bridge::for_generated::MessagePort,
@@ -6010,6 +6620,39 @@ fn pde_ffi_dispatcher_sync_impl(
 }
 
 // Section: rust2dart
+
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<ContinuousJoinResult> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self.0)
+            .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<ContinuousJoinResult>
+{
+}
+
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<ContinuousJoinResult>> for ContinuousJoinResult {
+    fn into_into_dart(self) -> FrbWrapper<ContinuousJoinResult> {
+        self.into()
+    }
+}
+
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<ContinuousJoiner> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self.0)
+            .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for FrbWrapper<ContinuousJoiner> {}
+
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<ContinuousJoiner>> for ContinuousJoiner {
+    fn into_into_dart(self) -> FrbWrapper<ContinuousJoiner> {
+        self.into()
+    }
+}
 
 // Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for FrbWrapper<LiquidTransaction> {
@@ -6397,6 +7040,28 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<boltz::api::types::ElectrumSet
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<bbqr::encode::Encoding> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self.0 {
+            bbqr::encode::Encoding::Hex => 0.into_dart(),
+            bbqr::encode::Encoding::Base32 => 1.into_dart(),
+            bbqr::encode::Encoding::Zlib => 2.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<bbqr::encode::Encoding>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<bbqr::encode::Encoding>>
+    for bbqr::encode::Encoding
+{
+    fn into_into_dart(self) -> FrbWrapper<bbqr::encode::Encoding> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for FrbWrapper<boltz::api::fees::Fees> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         [self.0.boltz_url.into_into_dart().into_dart()].into_dart()
@@ -6410,6 +7075,50 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<boltz::api::fees::Fees>>
     for boltz::api::fees::Fees
 {
     fn into_into_dart(self) -> FrbWrapper<boltz::api::fees::Fees> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<bbqr::file_type::FileType> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self.0 {
+            bbqr::file_type::FileType::Psbt => 0.into_dart(),
+            bbqr::file_type::FileType::Transaction => 1.into_dart(),
+            bbqr::file_type::FileType::Json => 2.into_dart(),
+            bbqr::file_type::FileType::Cbor => 3.into_dart(),
+            bbqr::file_type::FileType::UnicodeText => 4.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<bbqr::file_type::FileType>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<bbqr::file_type::FileType>>
+    for bbqr::file_type::FileType
+{
+    fn into_into_dart(self) -> FrbWrapper<bbqr::file_type::FileType> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<bbqr::join::Joined> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.0.encoding.into_into_dart().into_dart(),
+            self.0.file_type.into_into_dart().into_dart(),
+            self.0.data.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<bbqr::join::Joined>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<bbqr::join::Joined>> for bbqr::join::Joined {
+    fn into_into_dart(self) -> FrbWrapper<bbqr::join::Joined> {
         self.into()
     }
 }
@@ -6812,6 +7521,50 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<lwk::api::types::SizeAndFees>>
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<bbqr::split::Split> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.0.version.into_into_dart().into_dart(),
+            self.0.parts.into_into_dart().into_dart(),
+            self.0.encoding.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<bbqr::split::Split>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<bbqr::split::Split>> for bbqr::split::Split {
+    fn into_into_dart(self) -> FrbWrapper<bbqr::split::Split> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<bbqr::split::SplitOptions> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.0.encoding.into_into_dart().into_dart(),
+            self.0.min_split_number.into_into_dart().into_dart(),
+            self.0.max_split_number.into_into_dart().into_dart(),
+            self.0.min_version.into_into_dart().into_dart(),
+            self.0.max_version.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<bbqr::split::SplitOptions>
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<bbqr::split::SplitOptions>>
+    for bbqr::split::SplitOptions
+{
+    fn into_into_dart(self) -> FrbWrapper<bbqr::split::SplitOptions> {
+        self.into()
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for FrbWrapper<boltz::api::fees::SubSwapFees> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         [
@@ -7172,6 +7925,79 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<lwk::api::transaction::TxOutpu
         self.into()
     }
 }
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<bbqr::qr::Version> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self.0 {
+            bbqr::qr::Version::V01 => 0.into_dart(),
+            bbqr::qr::Version::V02 => 1.into_dart(),
+            bbqr::qr::Version::V03 => 2.into_dart(),
+            bbqr::qr::Version::V04 => 3.into_dart(),
+            bbqr::qr::Version::V05 => 4.into_dart(),
+            bbqr::qr::Version::V06 => 5.into_dart(),
+            bbqr::qr::Version::V07 => 6.into_dart(),
+            bbqr::qr::Version::V08 => 7.into_dart(),
+            bbqr::qr::Version::V09 => 8.into_dart(),
+            bbqr::qr::Version::V10 => 9.into_dart(),
+            bbqr::qr::Version::V11 => 10.into_dart(),
+            bbqr::qr::Version::V12 => 11.into_dart(),
+            bbqr::qr::Version::V13 => 12.into_dart(),
+            bbqr::qr::Version::V14 => 13.into_dart(),
+            bbqr::qr::Version::V15 => 14.into_dart(),
+            bbqr::qr::Version::V16 => 15.into_dart(),
+            bbqr::qr::Version::V17 => 16.into_dart(),
+            bbqr::qr::Version::V18 => 17.into_dart(),
+            bbqr::qr::Version::V19 => 18.into_dart(),
+            bbqr::qr::Version::V20 => 19.into_dart(),
+            bbqr::qr::Version::V21 => 20.into_dart(),
+            bbqr::qr::Version::V22 => 21.into_dart(),
+            bbqr::qr::Version::V23 => 22.into_dart(),
+            bbqr::qr::Version::V24 => 23.into_dart(),
+            bbqr::qr::Version::V25 => 24.into_dart(),
+            bbqr::qr::Version::V26 => 25.into_dart(),
+            bbqr::qr::Version::V27 => 26.into_dart(),
+            bbqr::qr::Version::V28 => 27.into_dart(),
+            bbqr::qr::Version::V29 => 28.into_dart(),
+            bbqr::qr::Version::V30 => 29.into_dart(),
+            bbqr::qr::Version::V31 => 30.into_dart(),
+            bbqr::qr::Version::V32 => 31.into_dart(),
+            bbqr::qr::Version::V33 => 32.into_dart(),
+            bbqr::qr::Version::V34 => 33.into_dart(),
+            bbqr::qr::Version::V35 => 34.into_dart(),
+            bbqr::qr::Version::V36 => 35.into_dart(),
+            bbqr::qr::Version::V37 => 36.into_dart(),
+            bbqr::qr::Version::V38 => 37.into_dart(),
+            bbqr::qr::Version::V39 => 38.into_dart(),
+            bbqr::qr::Version::V40 => 39.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for FrbWrapper<bbqr::qr::Version> {}
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<bbqr::qr::Version>> for bbqr::qr::Version {
+    fn into_into_dart(self) -> FrbWrapper<bbqr::qr::Version> {
+        self.into()
+    }
+}
+
+impl SseEncode for ContinuousJoinResult {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <RustOpaqueNom<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>,
+        >>::sse_encode(
+            flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self),
+            serializer,
+        );
+    }
+}
+
+impl SseEncode for ContinuousJoiner {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>>::sse_encode(flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self), serializer);
+    }
+}
 
 impl SseEncode for LiquidTransaction {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -7198,6 +8024,28 @@ impl SseEncode for Wallet {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         <RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<Wallet>>>::sse_encode(flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self), serializer);
+    }
+}
+
+impl SseEncode
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>>
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        let (ptr, size) = self.sse_encode_raw();
+        <usize>::sse_encode(ptr, serializer);
+        <i32>::sse_encode(size, serializer);
+    }
+}
+
+impl SseEncode
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        let (ptr, size) = self.sse_encode_raw();
+        <usize>::sse_encode(ptr, serializer);
+        <i32>::sse_encode(size, serializer);
     }
 }
 
@@ -7421,6 +8269,23 @@ impl SseEncode for boltz::api::types::ElectrumSettings {
     }
 }
 
+impl SseEncode for bbqr::encode::Encoding {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                bbqr::encode::Encoding::Hex => 0,
+                bbqr::encode::Encoding::Base32 => 1,
+                bbqr::encode::Encoding::Zlib => 2,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
 impl SseEncode for f32 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -7442,6 +8307,25 @@ impl SseEncode for boltz::api::fees::Fees {
     }
 }
 
+impl SseEncode for bbqr::file_type::FileType {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                bbqr::file_type::FileType::Psbt => 0,
+                bbqr::file_type::FileType::Transaction => 1,
+                bbqr::file_type::FileType::Json => 2,
+                bbqr::file_type::FileType::Cbor => 3,
+                bbqr::file_type::FileType::UnicodeText => 4,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
 impl SseEncode for i32 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -7453,6 +8337,15 @@ impl SseEncode for i64 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         serializer.cursor.write_i64::<NativeEndian>(self).unwrap();
+    }
+}
+
+impl SseEncode for bbqr::join::Joined {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <bbqr::encode::Encoding>::sse_encode(self.encoding, serializer);
+        <bbqr::file_type::FileType>::sse_encode(self.file_type, serializer);
+        <Vec<u8>>::sse_encode(self.data, serializer);
     }
 }
 
@@ -7666,6 +8559,26 @@ impl SseEncode for Option<boltz::api::types::ElectrumSettings> {
     }
 }
 
+impl SseEncode for Option<bbqr::encode::Encoding> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <bool>::sse_encode(self.is_some(), serializer);
+        if let Some(value) = self {
+            <bbqr::encode::Encoding>::sse_encode(value, serializer);
+        }
+    }
+}
+
+impl SseEncode for Option<bbqr::file_type::FileType> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <bool>::sse_encode(self.is_some(), serializer);
+        if let Some(value) = self {
+            <bbqr::file_type::FileType>::sse_encode(value, serializer);
+        }
+    }
+}
+
 impl SseEncode for Option<lwk::api::transaction::PsetInput> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -7859,6 +8772,26 @@ impl SseEncode for lwk::api::types::SizeAndFees {
         <usize>::sse_encode(self.discounted_vsize, serializer);
         <usize>::sse_encode(self.discounted_weight, serializer);
         <Vec<lwk::api::types::Balance>>::sse_encode(self.absolute_fees, serializer);
+    }
+}
+
+impl SseEncode for bbqr::split::Split {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <bbqr::qr::Version>::sse_encode(self.version, serializer);
+        <Vec<String>>::sse_encode(self.parts, serializer);
+        <bbqr::encode::Encoding>::sse_encode(self.encoding, serializer);
+    }
+}
+
+impl SseEncode for bbqr::split::SplitOptions {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <bbqr::encode::Encoding>::sse_encode(self.encoding, serializer);
+        <usize>::sse_encode(self.min_split_number, serializer);
+        <usize>::sse_encode(self.max_split_number, serializer);
+        <bbqr::qr::Version>::sse_encode(self.min_version, serializer);
+        <bbqr::qr::Version>::sse_encode(self.max_version, serializer);
     }
 }
 
@@ -8100,6 +9033,60 @@ impl SseEncode for usize {
     }
 }
 
+impl SseEncode for bbqr::qr::Version {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                bbqr::qr::Version::V01 => 0,
+                bbqr::qr::Version::V02 => 1,
+                bbqr::qr::Version::V03 => 2,
+                bbqr::qr::Version::V04 => 3,
+                bbqr::qr::Version::V05 => 4,
+                bbqr::qr::Version::V06 => 5,
+                bbqr::qr::Version::V07 => 6,
+                bbqr::qr::Version::V08 => 7,
+                bbqr::qr::Version::V09 => 8,
+                bbqr::qr::Version::V10 => 9,
+                bbqr::qr::Version::V11 => 10,
+                bbqr::qr::Version::V12 => 11,
+                bbqr::qr::Version::V13 => 12,
+                bbqr::qr::Version::V14 => 13,
+                bbqr::qr::Version::V15 => 14,
+                bbqr::qr::Version::V16 => 15,
+                bbqr::qr::Version::V17 => 16,
+                bbqr::qr::Version::V18 => 17,
+                bbqr::qr::Version::V19 => 18,
+                bbqr::qr::Version::V20 => 19,
+                bbqr::qr::Version::V21 => 20,
+                bbqr::qr::Version::V22 => 21,
+                bbqr::qr::Version::V23 => 22,
+                bbqr::qr::Version::V24 => 23,
+                bbqr::qr::Version::V25 => 24,
+                bbqr::qr::Version::V26 => 25,
+                bbqr::qr::Version::V27 => 26,
+                bbqr::qr::Version::V28 => 27,
+                bbqr::qr::Version::V29 => 28,
+                bbqr::qr::Version::V30 => 29,
+                bbqr::qr::Version::V31 => 30,
+                bbqr::qr::Version::V32 => 31,
+                bbqr::qr::Version::V33 => 32,
+                bbqr::qr::Version::V34 => 33,
+                bbqr::qr::Version::V35 => 34,
+                bbqr::qr::Version::V36 => 35,
+                bbqr::qr::Version::V37 => 36,
+                bbqr::qr::Version::V38 => 37,
+                bbqr::qr::Version::V39 => 38,
+                bbqr::qr::Version::V40 => 39,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
 #[cfg(not(target_family = "wasm"))]
 mod io {
     // This file is automatically generated, so please do not edit it.
@@ -8108,6 +9095,10 @@ mod io {
     // Section: imports
 
     use super::*;
+    use bbqr::continuous_join::*;
+    use dart_bbqr::api::ContinuousJoinerExt;
+    use dart_bbqr::api::JoinedExt;
+    use dart_bbqr::api::SplitExt;
     use flutter_rust_bridge::for_generated::byteorder::{
         NativeEndian, ReadBytesExt, WriteBytesExt,
     };
@@ -8122,6 +9113,30 @@ mod io {
 
     // Section: dart2rust
 
+    impl CstDecode<ContinuousJoinResult> for usize {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> ContinuousJoinResult {
+            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(CstDecode::<
+                RustOpaqueNom<
+                    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>,
+                >,
+            >::cst_decode(
+                self
+            ))
+        }
+    }
+    impl CstDecode<ContinuousJoiner> for usize {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> ContinuousJoiner {
+            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(CstDecode::<
+                RustOpaqueNom<
+                    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>,
+                >,
+            >::cst_decode(
+                self
+            ))
+        }
+    }
     impl CstDecode<LiquidTransaction> for usize {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> LiquidTransaction {
@@ -8156,6 +9171,37 @@ mod io {
             >::cst_decode(
                 self
             ))
+        }
+    }
+    impl
+        CstDecode<
+            RustOpaqueNom<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>,
+            >,
+        > for usize
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(
+            self,
+        ) -> RustOpaqueNom<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>,
+        > {
+            unsafe { decode_rust_opaque_nom(self as _) }
+        }
+    }
+    impl
+        CstDecode<
+            RustOpaqueNom<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>,
+            >,
+        > for usize
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(
+            self,
+        ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>
+        {
+            unsafe { decode_rust_opaque_nom(self as _) }
         }
     }
     impl
@@ -8302,11 +9348,25 @@ mod io {
             CstDecode::<boltz::api::types::ElectrumSettings>::cst_decode(*wrap).into()
         }
     }
+    impl CstDecode<bbqr::encode::Encoding> for *mut i32 {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> bbqr::encode::Encoding {
+            let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
+            CstDecode::<bbqr::encode::Encoding>::cst_decode(*wrap).into()
+        }
+    }
     impl CstDecode<boltz::api::fees::Fees> for *mut wire_cst_fees {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> boltz::api::fees::Fees {
             let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
             CstDecode::<boltz::api::fees::Fees>::cst_decode(*wrap).into()
+        }
+    }
+    impl CstDecode<bbqr::file_type::FileType> for *mut i32 {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> bbqr::file_type::FileType {
+            let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
+            CstDecode::<bbqr::file_type::FileType>::cst_decode(*wrap).into()
         }
     }
     impl CstDecode<boltz::api::types::KeyPair> for *mut wire_cst_key_pair {
@@ -8363,6 +9423,13 @@ mod io {
         fn cst_decode(self) -> boltz::api::types::Side {
             let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
             CstDecode::<boltz::api::types::Side>::cst_decode(*wrap).into()
+        }
+    }
+    impl CstDecode<bbqr::split::SplitOptions> for *mut wire_cst_split_options {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> bbqr::split::SplitOptions {
+            let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
+            CstDecode::<bbqr::split::SplitOptions>::cst_decode(*wrap).into()
         }
     }
     impl CstDecode<boltz::api::swap_status::Transaction> for *mut wire_cst_transaction {
@@ -8532,6 +9599,16 @@ mod io {
         fn cst_decode(self) -> boltz::api::fees::Fees {
             boltz::api::fees::Fees {
                 boltz_url: self.boltz_url.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<bbqr::join::Joined> for wire_cst_joined {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> bbqr::join::Joined {
+            bbqr::join::Joined {
+                encoding: self.encoding.cst_decode(),
+                file_type: self.file_type.cst_decode(),
+                data: self.data.cst_decode(),
             }
         }
     }
@@ -8810,6 +9887,28 @@ mod io {
                 discounted_vsize: self.discounted_vsize.cst_decode(),
                 discounted_weight: self.discounted_weight.cst_decode(),
                 absolute_fees: self.absolute_fees.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<bbqr::split::Split> for wire_cst_split {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> bbqr::split::Split {
+            bbqr::split::Split {
+                version: self.version.cst_decode(),
+                parts: self.parts.cst_decode(),
+                encoding: self.encoding.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<bbqr::split::SplitOptions> for wire_cst_split_options {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> bbqr::split::SplitOptions {
+            bbqr::split::SplitOptions {
+                encoding: self.encoding.cst_decode(),
+                min_split_number: self.min_split_number.cst_decode(),
+                max_split_number: self.max_split_number.cst_decode(),
+                min_version: self.min_version.cst_decode(),
+                max_version: self.max_version.cst_decode(),
             }
         }
     }
@@ -9166,6 +10265,20 @@ mod io {
             Self::new_with_null_ptr()
         }
     }
+    impl NewWithNullPtr for wire_cst_joined {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                encoding: Default::default(),
+                file_type: Default::default(),
+                data: core::ptr::null_mut(),
+            }
+        }
+    }
+    impl Default for wire_cst_joined {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
     impl NewWithNullPtr for wire_cst_key_pair {
         fn new_with_null_ptr() -> Self {
             Self {
@@ -9400,6 +10513,36 @@ mod io {
             Self::new_with_null_ptr()
         }
     }
+    impl NewWithNullPtr for wire_cst_split {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                version: Default::default(),
+                parts: core::ptr::null_mut(),
+                encoding: Default::default(),
+            }
+        }
+    }
+    impl Default for wire_cst_split {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_split_options {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                encoding: Default::default(),
+                min_split_number: Default::default(),
+                max_split_number: Default::default(),
+                min_version: Default::default(),
+                max_version: Default::default(),
+            }
+        }
+    }
+    impl Default for wire_cst_split_options {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
     impl NewWithNullPtr for wire_cst_sub_swap_fees {
         fn new_with_null_ptr() -> Self {
             Self {
@@ -9582,6 +10725,29 @@ mod io {
         fn default() -> Self {
             Self::new_with_null_ptr()
         }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__bbqr__continuous_join__ContinuousJoiner_default(
+        port_: i64,
+    ) {
+        wire__bbqr__continuous_join__ContinuousJoiner_default_impl(port_)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_part(
+        port_: i64,
+        that: usize,
+        part: *mut wire_cst_list_prim_u_8_strict,
+    ) {
+        wire__bbqr__continuous_join__ContinuousJoiner_frb_override_add_part_impl(port_, that, part)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__bbqr__continuous_join__ContinuousJoiner_new(
+        port_: i64,
+    ) {
+        wire__bbqr__continuous_join__ContinuousJoiner_new_impl(port_)
     }
 
     #[unsafe(no_mangle)]
@@ -10621,6 +11787,32 @@ mod io {
     }
 
     #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__bbqr__encode__encoding_as_byte(port_: i64, that: i32) {
+        wire__bbqr__encode__encoding_as_byte_impl(port_, that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__bbqr__encode__encoding_from_byte(port_: i64, byte: u8) {
+        wire__bbqr__encode__encoding_from_byte_impl(port_, byte)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__bbqr__encode__encoding_is_known_encoding(
+        port_: i64,
+        byte: u8,
+    ) {
+        wire__bbqr__encode__encoding_is_known_encoding_impl(port_, byte)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__bbqr__encode__encoding_split_mod(
+        port_: i64,
+        that: i32,
+    ) {
+        wire__bbqr__encode__encoding_split_mod_impl(port_, that)
+    }
+
+    #[unsafe(no_mangle)]
     pub extern "C" fn frbgen_bull_sdk_wire__lwk__api__transaction__extract_tx_bytes(
         port_: i64,
         pset: *mut wire_cst_list_prim_u_8_strict,
@@ -10661,6 +11853,30 @@ mod io {
     }
 
     #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__bbqr__file_type__file_type_as_byte(
+        port_: i64,
+        that: i32,
+    ) {
+        wire__bbqr__file_type__file_type_as_byte_impl(port_, that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__bbqr__file_type__file_type_from_byte(
+        port_: i64,
+        byte: u8,
+    ) {
+        wire__bbqr__file_type__file_type_from_byte_impl(port_, byte)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__bbqr__file_type__file_type_is_known_filetype(
+        port_: i64,
+        byte: u8,
+    ) {
+        wire__bbqr__file_type__file_type_is_known_filetype_impl(port_, byte)
+    }
+
+    #[unsafe(no_mangle)]
     pub extern "C" fn frbgen_bull_sdk_wire__lwk__api__types__get_balance_by_asset_id(
         balances: *mut wire_cst_list_balance,
         asset_id: *mut wire_cst_list_prim_u_8_strict,
@@ -10688,6 +11904,14 @@ mod io {
         pset: *mut wire_cst_list_prim_u_8_strict,
     ) {
         wire__lwk__api__transaction__get_size_and_absolute_fees_impl(port_, pset)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__bbqr__join__joined_frb_override_try_from_parts(
+        port_: i64,
+        parts: *mut wire_cst_list_String,
+    ) {
+        wire__bbqr__join__joined_frb_override_try_from_parts_impl(port_, parts)
     }
 
     #[unsafe(no_mangle)]
@@ -11019,6 +12243,21 @@ mod io {
     }
 
     #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__bbqr__split__split_frb_override_try_from_data(
+        port_: i64,
+        bytes: *mut wire_cst_list_prim_u_8_loose,
+        file_type: i32,
+        options: *mut wire_cst_split_options,
+    ) {
+        wire__bbqr__split__split_frb_override_try_from_data_impl(port_, bytes, file_type, options)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__bbqr__split__split_options_default(port_: i64) {
+        wire__bbqr__split__split_options_default_impl(port_)
+    }
+
+    #[unsafe(no_mangle)]
     pub extern "C" fn frbgen_bull_sdk_wire__boltz__api__swap_status__swap_status_as_string(
         that: i32,
     ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
@@ -11051,6 +12290,47 @@ mod io {
         json: *mut wire_cst_list_prim_u_8_strict,
     ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
         wire__boltz__api__swap_status__swap_stream_status_from_json_impl(json)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__bbqr__qr__version_data_capacity(port_: i64, that: i32) {
+        wire__bbqr__qr__version_data_capacity_impl(port_, that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>>::increment_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoinResult(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoinResult>>::decrement_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>::increment_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerContinuousJoiner(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<ContinuousJoiner>>::decrement_strong_count(ptr as _);
+        }
     }
 
     #[unsafe(no_mangle)]
@@ -11176,8 +12456,18 @@ mod io {
     }
 
     #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_cst_new_box_autoadd_encoding(value: i32) -> *mut i32 {
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(value)
+    }
+
+    #[unsafe(no_mangle)]
     pub extern "C" fn frbgen_bull_sdk_cst_new_box_autoadd_fees() -> *mut wire_cst_fees {
         flutter_rust_bridge::for_generated::new_leak_box_ptr(wire_cst_fees::new_with_null_ptr())
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_cst_new_box_autoadd_file_type(value: i32) -> *mut i32 {
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(value)
     }
 
     #[unsafe(no_mangle)]
@@ -11229,6 +12519,14 @@ mod io {
     #[unsafe(no_mangle)]
     pub extern "C" fn frbgen_bull_sdk_cst_new_box_autoadd_side(value: i32) -> *mut i32 {
         flutter_rust_bridge::for_generated::new_leak_box_ptr(value)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_cst_new_box_autoadd_split_options(
+    ) -> *mut wire_cst_split_options {
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(
+            wire_cst_split_options::new_with_null_ptr(),
+        )
     }
 
     #[unsafe(no_mangle)]
@@ -11531,6 +12829,13 @@ mod io {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
+    pub struct wire_cst_joined {
+        encoding: i32,
+        file_type: i32,
+        data: *mut wire_cst_list_prim_u_8_strict,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
     pub struct wire_cst_key_pair {
         secret_key: *mut wire_cst_list_prim_u_8_strict,
         public_key: *mut wire_cst_list_prim_u_8_strict,
@@ -11716,6 +13021,22 @@ mod io {
         discounted_vsize: usize,
         discounted_weight: usize,
         absolute_fees: *mut wire_cst_list_balance,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_split {
+        version: i32,
+        parts: *mut wire_cst_list_String,
+        encoding: i32,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_split_options {
+        encoding: i32,
+        min_split_number: usize,
+        max_split_number: usize,
+        min_version: i32,
+        max_version: i32,
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
