@@ -1,8 +1,5 @@
 name: bull_sdk_workspace
 publish_to: none
+
 environment:
   sdk: ">=3.10.4 <4.0.0"
-dev_dependencies:
-  melos: ^7.5.1
-workspace: 
-melos: 
