@@ -4,3 +4,6 @@
 [submodule "packages/lwk"]
 	path = packages/lwk
 	url = git@github.com:SatoshiPortal/lwk-dart.git
+[submodule "packages/satoshifier"]
+	path = packages/satoshifier
+	url = git@github.com:SatoshiPortal/dart-satoshifier.git
