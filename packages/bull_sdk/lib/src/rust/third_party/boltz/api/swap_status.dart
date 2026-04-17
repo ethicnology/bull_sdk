@@ -8,16 +8,6 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 // These function are ignored because they are on traits that is not defined in current crate (put an empty `#[frb]` on it to unignore): `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `clone`, `clone`, `clone`, `clone`, `eq`, `eq`, `eq`, `eq`, `fmt`, `fmt`, `fmt`, `fmt`
 
-/// Deserialize a SwapStreamStatus from a JSON string
-SwapStreamStatus swapStreamStatusFromJson({required String json}) =>
-    BullSdk.instance.api.boltzApiSwapStatusSwapStreamStatusFromJson(json: json);
-
-/// Deserialize a SwapStatusResponse from a JSON string
-SwapStatusResponse swapStatusResponseFromJson({required String json}) => BullSdk
-    .instance
-    .api
-    .boltzApiSwapStatusSwapStatusResponseFromJson(json: json);
-
 /// Status of a swap as reported by the Boltz API
 enum SwapStatus {
   swapCreated,
@@ -71,6 +61,14 @@ class SwapStatusResponse {
     this.error,
   });
 
+  static SwapStatusResponse fromJson({required String json}) => BullSdk
+      .instance
+      .api
+      .boltzApiSwapStatusSwapStatusResponseFromJson(json: json);
+
+  String toJson() => BullSdk.instance.api
+      .boltzApiSwapStatusSwapStatusResponseToJson(that: this);
+
   @override
   int get hashCode =>
       status.hashCode ^
@@ -103,6 +101,14 @@ class SwapStreamStatus {
     this.transaction,
   });
 
+  static SwapStreamStatus fromJson({required String json}) => BullSdk
+      .instance
+      .api
+      .boltzApiSwapStatusSwapStreamStatusFromJson(json: json);
+
+  String toJson() =>
+      BullSdk.instance.api.boltzApiSwapStatusSwapStreamStatusToJson(that: this);
+
   @override
   int get hashCode =>
       id.hashCode ^ status.hashCode ^ error.hashCode ^ transaction.hashCode;
@@ -125,6 +131,12 @@ class Transaction {
   final int? eta;
 
   const Transaction({required this.id, required this.hex, this.eta});
+
+  static Transaction fromJson({required String json}) =>
+      BullSdk.instance.api.boltzApiSwapStatusTransactionFromJson(json: json);
+
+  String toJson() =>
+      BullSdk.instance.api.boltzApiSwapStatusTransactionToJson(that: this);
 
   @override
   int get hashCode => id.hashCode ^ hex.hashCode ^ eta.hashCode;

@@ -46,7 +46,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueNom,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.11.1";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 516130022;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 1683105466;
 
 // Section: executor
 
@@ -4376,6 +4376,22 @@ fn wire__lwk__api__types__get_balance_by_asset_id_impl(
         },
     )
 }
+fn wire__lwk__api__types__get_lbtc_asset_id_impl(
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "get_lbtc_asset_id",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            transform_result_dco::<_, _, ()>((move || {
+                let output_ok = Result::<_, ()>::Ok(lwk::api::types::get_lbtc_asset_id())?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
 fn wire__lwk__api__types__get_lbtc_balance_impl(
     balances: impl CstDecode<Vec<lwk::api::types::Balance>>,
 ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
@@ -4390,6 +4406,22 @@ fn wire__lwk__api__types__get_lbtc_balance_impl(
             transform_result_dco::<_, _, ()>((move || {
                 let output_ok =
                     Result::<_, ()>::Ok(lwk::api::types::get_lbtc_balance(api_balances))?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__lwk__api__types__get_ltest_asset_id_impl(
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "get_ltest_asset_id",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            transform_result_dco::<_, _, ()>((move || {
+                let output_ok = Result::<_, ()>::Ok(lwk::api::types::get_ltest_asset_id())?;
                 Ok(output_ok)
             })())
         },
@@ -5321,7 +5353,25 @@ fn wire__boltz__api__swap_status__swap_status_response_from_json_impl(
         move || {
             let api_json = json.cst_decode();
             transform_result_dco::<_, _, String>((move || {
-                let output_ok = boltz::api::swap_status::swap_status_response_from_json(api_json)?;
+                let output_ok = boltz::api::swap_status::SwapStatusResponse::from_json(api_json)?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__boltz__api__swap_status__swap_status_response_to_json_impl(
+    that: impl CstDecode<boltz::api::swap_status::SwapStatusResponse>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "swap_status_response_to_json",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, String>((move || {
+                let output_ok = boltz::api::swap_status::SwapStatusResponse::to_json(&api_that)?;
                 Ok(output_ok)
             })())
         },
@@ -5359,7 +5409,61 @@ fn wire__boltz__api__swap_status__swap_stream_status_from_json_impl(
         move || {
             let api_json = json.cst_decode();
             transform_result_dco::<_, _, String>((move || {
-                let output_ok = boltz::api::swap_status::swap_stream_status_from_json(api_json)?;
+                let output_ok = boltz::api::swap_status::SwapStreamStatus::from_json(api_json)?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__boltz__api__swap_status__swap_stream_status_to_json_impl(
+    that: impl CstDecode<boltz::api::swap_status::SwapStreamStatus>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "swap_stream_status_to_json",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, String>((move || {
+                let output_ok = boltz::api::swap_status::SwapStreamStatus::to_json(&api_that)?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__boltz__api__swap_status__transaction_from_json_impl(
+    json: impl CstDecode<String>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "transaction_from_json",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_json = json.cst_decode();
+            transform_result_dco::<_, _, String>((move || {
+                let output_ok = boltz::api::swap_status::Transaction::from_json(api_json)?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__boltz__api__swap_status__transaction_to_json_impl(
+    that: impl CstDecode<boltz::api::swap_status::Transaction>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "transaction_to_json",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, String>((move || {
+                let output_ok = boltz::api::swap_status::Transaction::to_json(&api_that)?;
                 Ok(output_ok)
             })())
         },
@@ -11021,6 +11125,20 @@ mod io {
             CstDecode::<bbqr::split::SplitOptions>::cst_decode(*wrap).into()
         }
     }
+    impl CstDecode<boltz::api::swap_status::SwapStatusResponse> for *mut wire_cst_swap_status_response {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> boltz::api::swap_status::SwapStatusResponse {
+            let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
+            CstDecode::<boltz::api::swap_status::SwapStatusResponse>::cst_decode(*wrap).into()
+        }
+    }
+    impl CstDecode<boltz::api::swap_status::SwapStreamStatus> for *mut wire_cst_swap_stream_status {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> boltz::api::swap_status::SwapStreamStatus {
+            let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
+            CstDecode::<boltz::api::swap_status::SwapStreamStatus>::cst_decode(*wrap).into()
+        }
+    }
     impl CstDecode<boltz::api::swap_status::Transaction> for *mut wire_cst_transaction {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> boltz::api::swap_status::Transaction {
@@ -13763,10 +13881,22 @@ mod io {
     }
 
     #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__lwk__api__types__get_lbtc_asset_id(
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__lwk__api__types__get_lbtc_asset_id_impl()
+    }
+
+    #[unsafe(no_mangle)]
     pub extern "C" fn frbgen_bull_sdk_wire__lwk__api__types__get_lbtc_balance(
         balances: *mut wire_cst_list_balance,
     ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
         wire__lwk__api__types__get_lbtc_balance_impl(balances)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__lwk__api__types__get_ltest_asset_id(
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__lwk__api__types__get_ltest_asset_id_impl()
     }
 
     #[unsafe(no_mangle)]
@@ -14157,6 +14287,13 @@ mod io {
     }
 
     #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__boltz__api__swap_status__swap_status_response_to_json(
+        that: *mut wire_cst_swap_status_response,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__boltz__api__swap_status__swap_status_response_to_json_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
     pub extern "C" fn frbgen_bull_sdk_wire__boltz__api__swap_status__swap_status_to_json_string(
         that: i32,
     ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
@@ -14168,6 +14305,27 @@ mod io {
         json: *mut wire_cst_list_prim_u_8_strict,
     ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
         wire__boltz__api__swap_status__swap_stream_status_from_json_impl(json)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__boltz__api__swap_status__swap_stream_status_to_json(
+        that: *mut wire_cst_swap_stream_status,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__boltz__api__swap_status__swap_stream_status_to_json_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__boltz__api__swap_status__transaction_from_json(
+        json: *mut wire_cst_list_prim_u_8_strict,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__boltz__api__swap_status__transaction_from_json_impl(json)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_wire__boltz__api__swap_status__transaction_to_json(
+        that: *mut wire_cst_transaction,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__boltz__api__swap_status__transaction_to_json_impl(that)
     }
 
     #[unsafe(no_mangle)]
@@ -14477,6 +14635,22 @@ mod io {
     ) -> *mut wire_cst_split_options {
         flutter_rust_bridge::for_generated::new_leak_box_ptr(
             wire_cst_split_options::new_with_null_ptr(),
+        )
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_cst_new_box_autoadd_swap_status_response(
+    ) -> *mut wire_cst_swap_status_response {
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(
+            wire_cst_swap_status_response::new_with_null_ptr(),
+        )
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_bull_sdk_cst_new_box_autoadd_swap_stream_status(
+    ) -> *mut wire_cst_swap_stream_status {
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(
+            wire_cst_swap_stream_status::new_with_null_ptr(),
         )
     }
 

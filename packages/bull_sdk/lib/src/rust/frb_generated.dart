@@ -93,7 +93,7 @@ class BullSdk extends BaseEntrypoint<BullSdkApi, BullSdkApiImpl, BullSdkWire> {
   String get codegenVersion => '2.11.1';
 
   @override
-  int get rustContentHash => 516130022;
+  int get rustContentHash => 1683105466;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -708,7 +708,11 @@ abstract class BullSdkApi extends BaseApi {
     required String assetId,
   });
 
+  String lwkApiTypesGetLbtcAssetId();
+
   PlatformInt64 lwkApiTypesGetLbtcBalance({required List<Balance> balances});
+
+  String lwkApiTypesGetLtestAssetId();
 
   PlatformInt64 lwkApiTypesGetLtestBalance({required List<Balance> balances});
 
@@ -884,11 +888,23 @@ abstract class BullSdkApi extends BaseApi {
     required String json,
   });
 
+  String boltzApiSwapStatusSwapStatusResponseToJson({
+    required SwapStatusResponse that,
+  });
+
   String boltzApiSwapStatusSwapStatusToJsonString({required SwapStatus that});
 
   SwapStreamStatus boltzApiSwapStatusSwapStreamStatusFromJson({
     required String json,
   });
+
+  String boltzApiSwapStatusSwapStreamStatusToJson({
+    required SwapStreamStatus that,
+  });
+
+  Transaction boltzApiSwapStatusTransactionFromJson({required String json});
+
+  String boltzApiSwapStatusTransactionToJson({required Transaction that});
 
   bool arkWalletArkUtilsUtilsIsArk({required String address});
 
@@ -5443,6 +5459,27 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
       );
 
   @override
+  String lwkApiTypesGetLbtcAssetId() {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          return wire.wire__lwk__api__types__get_lbtc_asset_id();
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_String,
+          decodeErrorData: null,
+        ),
+        constMeta: kLwkApiTypesGetLbtcAssetIdConstMeta,
+        argValues: [],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kLwkApiTypesGetLbtcAssetIdConstMeta =>
+      const TaskConstMeta(debugName: "get_lbtc_asset_id", argNames: []);
+
+  @override
   PlatformInt64 lwkApiTypesGetLbtcBalance({required List<Balance> balances}) {
     return handler.executeSync(
       SyncTask(
@@ -5465,6 +5502,27 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
     debugName: "get_lbtc_balance",
     argNames: ["balances"],
   );
+
+  @override
+  String lwkApiTypesGetLtestAssetId() {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          return wire.wire__lwk__api__types__get_ltest_asset_id();
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_String,
+          decodeErrorData: null,
+        ),
+        constMeta: kLwkApiTypesGetLtestAssetIdConstMeta,
+        argValues: [],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kLwkApiTypesGetLtestAssetIdConstMeta =>
+      const TaskConstMeta(debugName: "get_ltest_asset_id", argNames: []);
 
   @override
   PlatformInt64 lwkApiTypesGetLtestBalance({required List<Balance> balances}) {
@@ -6674,6 +6732,36 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
       );
 
   @override
+  String boltzApiSwapStatusSwapStatusResponseToJson({
+    required SwapStatusResponse that,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 = cst_encode_box_autoadd_swap_status_response(that);
+          return wire
+              .wire__boltz__api__swap_status__swap_status_response_to_json(
+                arg0,
+              );
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_String,
+          decodeErrorData: dco_decode_String,
+        ),
+        constMeta: kBoltzApiSwapStatusSwapStatusResponseToJsonConstMeta,
+        argValues: [that],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kBoltzApiSwapStatusSwapStatusResponseToJsonConstMeta =>
+      const TaskConstMeta(
+        debugName: "swap_status_response_to_json",
+        argNames: ["that"],
+      );
+
+  @override
   String boltzApiSwapStatusSwapStatusToJsonString({required SwapStatus that}) {
     return handler.executeSync(
       SyncTask(
@@ -6729,6 +6817,84 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
         debugName: "swap_stream_status_from_json",
         argNames: ["json"],
       );
+
+  @override
+  String boltzApiSwapStatusSwapStreamStatusToJson({
+    required SwapStreamStatus that,
+  }) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 = cst_encode_box_autoadd_swap_stream_status(that);
+          return wire.wire__boltz__api__swap_status__swap_stream_status_to_json(
+            arg0,
+          );
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_String,
+          decodeErrorData: dco_decode_String,
+        ),
+        constMeta: kBoltzApiSwapStatusSwapStreamStatusToJsonConstMeta,
+        argValues: [that],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kBoltzApiSwapStatusSwapStreamStatusToJsonConstMeta =>
+      const TaskConstMeta(
+        debugName: "swap_stream_status_to_json",
+        argNames: ["that"],
+      );
+
+  @override
+  Transaction boltzApiSwapStatusTransactionFromJson({required String json}) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 = cst_encode_String(json);
+          return wire.wire__boltz__api__swap_status__transaction_from_json(
+            arg0,
+          );
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_transaction,
+          decodeErrorData: dco_decode_String,
+        ),
+        constMeta: kBoltzApiSwapStatusTransactionFromJsonConstMeta,
+        argValues: [json],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kBoltzApiSwapStatusTransactionFromJsonConstMeta =>
+      const TaskConstMeta(
+        debugName: "transaction_from_json",
+        argNames: ["json"],
+      );
+
+  @override
+  String boltzApiSwapStatusTransactionToJson({required Transaction that}) {
+    return handler.executeSync(
+      SyncTask(
+        callFfi: () {
+          var arg0 = cst_encode_box_autoadd_transaction(that);
+          return wire.wire__boltz__api__swap_status__transaction_to_json(arg0);
+        },
+        codec: DcoCodec(
+          decodeSuccessData: dco_decode_String,
+          decodeErrorData: dco_decode_String,
+        ),
+        constMeta: kBoltzApiSwapStatusTransactionToJsonConstMeta,
+        argValues: [that],
+        apiImpl: this,
+      ),
+    );
+  }
+
+  TaskConstMeta get kBoltzApiSwapStatusTransactionToJsonConstMeta =>
+      const TaskConstMeta(debugName: "transaction_to_json", argNames: ["that"]);
 
   @override
   bool arkWalletArkUtilsUtilsIsArk({required String address}) {
@@ -7344,6 +7510,18 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   SplitOptions dco_decode_box_autoadd_split_options(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dco_decode_split_options(raw);
+  }
+
+  @protected
+  SwapStatusResponse dco_decode_box_autoadd_swap_status_response(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_swap_status_response(raw);
+  }
+
+  @protected
+  SwapStreamStatus dco_decode_box_autoadd_swap_stream_status(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_swap_stream_status(raw);
   }
 
   @protected
@@ -8820,6 +8998,22 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   ) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return (sse_decode_split_options(deserializer));
+  }
+
+  @protected
+  SwapStatusResponse sse_decode_box_autoadd_swap_status_response(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_swap_status_response(deserializer));
+  }
+
+  @protected
+  SwapStreamStatus sse_decode_box_autoadd_swap_stream_status(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_swap_stream_status(deserializer));
   }
 
   @protected
@@ -10881,6 +11075,24 @@ class BullSdkApiImpl extends BullSdkApiImplPlatform implements BullSdkApi {
   ) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_split_options(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_swap_status_response(
+    SwapStatusResponse self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_swap_status_response(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_swap_stream_status(
+    SwapStreamStatus self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_swap_stream_status(self, serializer);
   }
 
   @protected

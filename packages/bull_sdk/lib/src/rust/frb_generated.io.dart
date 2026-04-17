@@ -317,6 +317,12 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   SplitOptions dco_decode_box_autoadd_split_options(dynamic raw);
 
   @protected
+  SwapStatusResponse dco_decode_box_autoadd_swap_status_response(dynamic raw);
+
+  @protected
+  SwapStreamStatus dco_decode_box_autoadd_swap_stream_status(dynamic raw);
+
+  @protected
   Transaction dco_decode_box_autoadd_transaction(dynamic raw);
 
   @protected
@@ -844,6 +850,16 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   );
 
   @protected
+  SwapStatusResponse sse_decode_box_autoadd_swap_status_response(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  SwapStreamStatus sse_decode_box_autoadd_swap_stream_status(
+    SseDeserializer deserializer,
+  );
+
+  @protected
   Transaction sse_decode_box_autoadd_transaction(SseDeserializer deserializer);
 
   @protected
@@ -1350,6 +1366,24 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
     // Codec=Cst (C-struct based), see doc to use other codecs
     final ptr = wire.cst_new_box_autoadd_split_options();
     cst_api_fill_to_wire_split_options(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_swap_status_response>
+  cst_encode_box_autoadd_swap_status_response(SwapStatusResponse raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ptr = wire.cst_new_box_autoadd_swap_status_response();
+    cst_api_fill_to_wire_swap_status_response(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_swap_stream_status>
+  cst_encode_box_autoadd_swap_stream_status(SwapStreamStatus raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ptr = wire.cst_new_box_autoadd_swap_stream_status();
+    cst_api_fill_to_wire_swap_stream_status(raw, ptr.ref);
     return ptr;
   }
 
@@ -1890,6 +1924,22 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
     ffi.Pointer<wire_cst_split_options> wireObj,
   ) {
     cst_api_fill_to_wire_split_options(apiObj, wireObj.ref);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_box_autoadd_swap_status_response(
+    SwapStatusResponse apiObj,
+    ffi.Pointer<wire_cst_swap_status_response> wireObj,
+  ) {
+    cst_api_fill_to_wire_swap_status_response(apiObj, wireObj.ref);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_box_autoadd_swap_stream_status(
+    SwapStreamStatus apiObj,
+    ffi.Pointer<wire_cst_swap_stream_status> wireObj,
+  ) {
+    cst_api_fill_to_wire_swap_stream_status(apiObj, wireObj.ref);
   }
 
   @protected
@@ -2918,6 +2968,18 @@ abstract class BullSdkApiImplPlatform extends BaseApiImpl<BullSdkWire> {
   @protected
   void sse_encode_box_autoadd_split_options(
     SplitOptions self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void sse_encode_box_autoadd_swap_status_response(
+    SwapStatusResponse self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void sse_encode_box_autoadd_swap_stream_status(
+    SwapStreamStatus self,
     SseSerializer serializer,
   );
 
@@ -6480,6 +6542,18 @@ class BullSdkWire implements BaseWire {
             )
           >();
 
+  WireSyncRust2DartDco wire__lwk__api__types__get_lbtc_asset_id() {
+    return _wire__lwk__api__types__get_lbtc_asset_id();
+  }
+
+  late final _wire__lwk__api__types__get_lbtc_asset_idPtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function()>>(
+        'frbgen_bull_sdk_wire__lwk__api__types__get_lbtc_asset_id',
+      );
+  late final _wire__lwk__api__types__get_lbtc_asset_id =
+      _wire__lwk__api__types__get_lbtc_asset_idPtr
+          .asFunction<WireSyncRust2DartDco Function()>();
+
   WireSyncRust2DartDco wire__lwk__api__types__get_lbtc_balance(
     ffi.Pointer<wire_cst_list_balance> balances,
   ) {
@@ -6497,6 +6571,18 @@ class BullSdkWire implements BaseWire {
           .asFunction<
             WireSyncRust2DartDco Function(ffi.Pointer<wire_cst_list_balance>)
           >();
+
+  WireSyncRust2DartDco wire__lwk__api__types__get_ltest_asset_id() {
+    return _wire__lwk__api__types__get_ltest_asset_id();
+  }
+
+  late final _wire__lwk__api__types__get_ltest_asset_idPtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function()>>(
+        'frbgen_bull_sdk_wire__lwk__api__types__get_ltest_asset_id',
+      );
+  late final _wire__lwk__api__types__get_ltest_asset_id =
+      _wire__lwk__api__types__get_ltest_asset_idPtr
+          .asFunction<WireSyncRust2DartDco Function()>();
 
   WireSyncRust2DartDco wire__lwk__api__types__get_ltest_balance(
     ffi.Pointer<wire_cst_list_balance> balances,
@@ -7495,6 +7581,31 @@ class BullSdkWire implements BaseWire {
           >();
 
   WireSyncRust2DartDco
+  wire__boltz__api__swap_status__swap_status_response_to_json(
+    ffi.Pointer<wire_cst_swap_status_response> that,
+  ) {
+    return _wire__boltz__api__swap_status__swap_status_response_to_json(that);
+  }
+
+  late final _wire__boltz__api__swap_status__swap_status_response_to_jsonPtr =
+      _lookup<
+        ffi.NativeFunction<
+          WireSyncRust2DartDco Function(
+            ffi.Pointer<wire_cst_swap_status_response>,
+          )
+        >
+      >(
+        'frbgen_bull_sdk_wire__boltz__api__swap_status__swap_status_response_to_json',
+      );
+  late final _wire__boltz__api__swap_status__swap_status_response_to_json =
+      _wire__boltz__api__swap_status__swap_status_response_to_jsonPtr
+          .asFunction<
+            WireSyncRust2DartDco Function(
+              ffi.Pointer<wire_cst_swap_status_response>,
+            )
+          >();
+
+  WireSyncRust2DartDco
   wire__boltz__api__swap_status__swap_status_to_json_string(int that) {
     return _wire__boltz__api__swap_status__swap_status_to_json_string(that);
   }
@@ -7530,6 +7641,71 @@ class BullSdkWire implements BaseWire {
             WireSyncRust2DartDco Function(
               ffi.Pointer<wire_cst_list_prim_u_8_strict>,
             )
+          >();
+
+  WireSyncRust2DartDco
+  wire__boltz__api__swap_status__swap_stream_status_to_json(
+    ffi.Pointer<wire_cst_swap_stream_status> that,
+  ) {
+    return _wire__boltz__api__swap_status__swap_stream_status_to_json(that);
+  }
+
+  late final _wire__boltz__api__swap_status__swap_stream_status_to_jsonPtr =
+      _lookup<
+        ffi.NativeFunction<
+          WireSyncRust2DartDco Function(
+            ffi.Pointer<wire_cst_swap_stream_status>,
+          )
+        >
+      >(
+        'frbgen_bull_sdk_wire__boltz__api__swap_status__swap_stream_status_to_json',
+      );
+  late final _wire__boltz__api__swap_status__swap_stream_status_to_json =
+      _wire__boltz__api__swap_status__swap_stream_status_to_jsonPtr
+          .asFunction<
+            WireSyncRust2DartDco Function(
+              ffi.Pointer<wire_cst_swap_stream_status>,
+            )
+          >();
+
+  WireSyncRust2DartDco wire__boltz__api__swap_status__transaction_from_json(
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> json,
+  ) {
+    return _wire__boltz__api__swap_status__transaction_from_json(json);
+  }
+
+  late final _wire__boltz__api__swap_status__transaction_from_jsonPtr =
+      _lookup<
+        ffi.NativeFunction<
+          WireSyncRust2DartDco Function(
+            ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+          )
+        >
+      >('frbgen_bull_sdk_wire__boltz__api__swap_status__transaction_from_json');
+  late final _wire__boltz__api__swap_status__transaction_from_json =
+      _wire__boltz__api__swap_status__transaction_from_jsonPtr
+          .asFunction<
+            WireSyncRust2DartDco Function(
+              ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+            )
+          >();
+
+  WireSyncRust2DartDco wire__boltz__api__swap_status__transaction_to_json(
+    ffi.Pointer<wire_cst_transaction> that,
+  ) {
+    return _wire__boltz__api__swap_status__transaction_to_json(that);
+  }
+
+  late final _wire__boltz__api__swap_status__transaction_to_jsonPtr =
+      _lookup<
+        ffi.NativeFunction<
+          WireSyncRust2DartDco Function(ffi.Pointer<wire_cst_transaction>)
+        >
+      >('frbgen_bull_sdk_wire__boltz__api__swap_status__transaction_to_json');
+  late final _wire__boltz__api__swap_status__transaction_to_json =
+      _wire__boltz__api__swap_status__transaction_to_jsonPtr
+          .asFunction<
+            WireSyncRust2DartDco Function(ffi.Pointer<wire_cst_transaction>)
           >();
 
   WireSyncRust2DartDco wire__ark_wallet__ark__utils__utils_is_ark(
@@ -8109,6 +8285,34 @@ class BullSdkWire implements BaseWire {
       _cst_new_box_autoadd_split_optionsPtr
           .asFunction<ffi.Pointer<wire_cst_split_options> Function()>();
 
+  ffi.Pointer<wire_cst_swap_status_response>
+  cst_new_box_autoadd_swap_status_response() {
+    return _cst_new_box_autoadd_swap_status_response();
+  }
+
+  late final _cst_new_box_autoadd_swap_status_responsePtr =
+      _lookup<
+        ffi.NativeFunction<
+          ffi.Pointer<wire_cst_swap_status_response> Function()
+        >
+      >('frbgen_bull_sdk_cst_new_box_autoadd_swap_status_response');
+  late final _cst_new_box_autoadd_swap_status_response =
+      _cst_new_box_autoadd_swap_status_responsePtr
+          .asFunction<ffi.Pointer<wire_cst_swap_status_response> Function()>();
+
+  ffi.Pointer<wire_cst_swap_stream_status>
+  cst_new_box_autoadd_swap_stream_status() {
+    return _cst_new_box_autoadd_swap_stream_status();
+  }
+
+  late final _cst_new_box_autoadd_swap_stream_statusPtr =
+      _lookup<
+        ffi.NativeFunction<ffi.Pointer<wire_cst_swap_stream_status> Function()>
+      >('frbgen_bull_sdk_cst_new_box_autoadd_swap_stream_status');
+  late final _cst_new_box_autoadd_swap_stream_status =
+      _cst_new_box_autoadd_swap_stream_statusPtr
+          .asFunction<ffi.Pointer<wire_cst_swap_stream_status> Function()>();
+
   ffi.Pointer<wire_cst_transaction> cst_new_box_autoadd_transaction() {
     return _cst_new_box_autoadd_transaction();
   }
@@ -8637,6 +8841,36 @@ final class wire_cst_split_options extends ffi.Struct {
   external int max_version;
 }
 
+final class wire_cst_transaction extends ffi.Struct {
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> id;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> hex;
+
+  external ffi.Pointer<ffi.Uint32> eta;
+}
+
+final class wire_cst_swap_status_response extends ffi.Struct {
+  @ffi.Int32()
+  external int status;
+
+  external ffi.Pointer<wire_cst_transaction> transaction;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> failure_reason;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> error;
+}
+
+final class wire_cst_swap_stream_status extends ffi.Struct {
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> id;
+
+  @ffi.Int32()
+  external int status;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> error;
+
+  external ffi.Pointer<wire_cst_transaction> transaction;
+}
+
 final class wire_cst_pset_input extends ffi.Struct {
   external ffi.Pointer<wire_cst_list_prim_u_8_strict> witness_utxo_script;
 
@@ -8653,14 +8887,6 @@ final class wire_cst_pset_output extends ffi.Struct {
   external ffi.Pointer<wire_cst_list_prim_u_8_strict> asset;
 
   external ffi.Pointer<wire_cst_list_prim_u_8_strict> blinding_key;
-}
-
-final class wire_cst_transaction extends ffi.Struct {
-  external ffi.Pointer<wire_cst_list_prim_u_8_strict> id;
-
-  external ffi.Pointer<wire_cst_list_prim_u_8_strict> hex;
-
-  external ffi.Pointer<ffi.Uint32> eta;
 }
 
 final class wire_cst_tx_input extends ffi.Struct {
@@ -9103,28 +9329,6 @@ final class wire_cst_submarine_fees_and_limits extends ffi.Struct {
   external wire_cst_sub_swap_fees btc_fees;
 
   external wire_cst_sub_swap_fees lbtc_fees;
-}
-
-final class wire_cst_swap_status_response extends ffi.Struct {
-  @ffi.Int32()
-  external int status;
-
-  external ffi.Pointer<wire_cst_transaction> transaction;
-
-  external ffi.Pointer<wire_cst_list_prim_u_8_strict> failure_reason;
-
-  external ffi.Pointer<wire_cst_list_prim_u_8_strict> error;
-}
-
-final class wire_cst_swap_stream_status extends ffi.Struct {
-  external ffi.Pointer<wire_cst_list_prim_u_8_strict> id;
-
-  @ffi.Int32()
-  external int status;
-
-  external ffi.Pointer<wire_cst_list_prim_u_8_strict> error;
-
-  external ffi.Pointer<wire_cst_transaction> transaction;
 }
 
 final class wire_cst_utils extends ffi.Opaque {}

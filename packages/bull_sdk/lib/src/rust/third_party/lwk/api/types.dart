@@ -27,6 +27,12 @@ PlatformInt64 getLbtcBalance({required List<Balance> balances}) =>
 PlatformInt64 getLtestBalance({required List<Balance> balances}) =>
     BullSdk.instance.api.lwkApiTypesGetLtestBalance(balances: balances);
 
+/// Get L-BTC mainnet asset ID
+String getLbtcAssetId() => BullSdk.instance.api.lwkApiTypesGetLbtcAssetId();
+
+/// Get L-BTC testnet asset ID
+String getLtestAssetId() => BullSdk.instance.api.lwkApiTypesGetLtestAssetId();
+
 /// Address class which contains both standard and confidential addresses with the address index in the wallet
 class Address {
   final String standard;
