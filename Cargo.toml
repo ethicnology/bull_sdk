@@ -11,7 +11,11 @@ exclude = [
 ]
 resolver = "2"
 
+[profile.dev]
+debug = false
+
 [profile.release]
+debug = false
 strip = true
 opt-level = "z"
 lto = true
