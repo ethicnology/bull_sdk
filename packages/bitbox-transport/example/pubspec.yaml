@@ -1,0 +1,24 @@
+name: bitbox_transport_example
+description: Integration tests for BitBox02 USB and BLE connectors
+publish_to: none
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  bitbox_transport:
+    path: ../
+  bull_sdk:
+    path: ../../bull_sdk
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
